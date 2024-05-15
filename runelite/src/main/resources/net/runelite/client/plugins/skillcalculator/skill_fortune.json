@@ -1,0 +1,2370 @@
+{
+  "actions": [
+{
+      "level": 1,
+      "icon": 8866,
+      "name": "Storage chest key (UIM)",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 22316,
+      "name": "Exiled Sword",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 21046,
+      "name": "@cya@Chest rate bonus (+15%)",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 4585,
+      "name": "Dragon plateskirt",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 4087,
+      "name": "Dragon platelegs",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 1187,
+      "name": "Dragon sq shield",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 1149,
+      "name": "Dragon med helm",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 8868,
+      "name": "Perm storage chest key (UIM)",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 25378,
+      "name": "Dragon axe (or)",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 6889,
+      "name": "Mage's book",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 2399,
+      "name": "Key",
+      "xp": 100
+    },       {
+      "level": 1,
+      "icon": 24495,
+      "name": "Jar of dreams",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 24466,
+      "name": "Twisted horns",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23525,
+      "name": "Jar of eyes",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23077,
+      "name": "Alchemic Hydra Heads",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23064,
+      "name": "unknown item 23064",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 22106,
+      "name": "Jar Of Decay",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 21745,
+      "name": "Jar of stone",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 21275,
+      "name": "Dark claw",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 19701,
+      "name": "Jar of darkness",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13277,
+      "name": "Jar of miasma",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13245,
+      "name": "Jar of souls",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12936,
+      "name": "Jar of swamp",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12885,
+      "name": "Jar of sand",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12007,
+      "name": "Jar of dirt",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 11180,
+      "name": "Ancient coin",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 7981,
+      "name": "Kq head",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 7980,
+      "name": "Kbd heads",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 7979,
+      "name": "Abyssal head",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 691,
+      "name": "10,000 Nomad Point Certificate",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 681,
+      "name": "Ancient talisman",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 19720,
+      "name": "Occult necklace (or)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12436,
+      "name": "Amulet of fury (or)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12002,
+      "name": "Occult necklace",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 22986,
+      "name": "Bonecrusher Necklace",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 30010,
+      "name": "Postie Pete",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 19478,
+      "name": "Light ballista",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 30012,
+      "name": "Toucan",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 30011,
+      "name": "Imp",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20710,
+      "name": "Pyromancer boots",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20708,
+      "name": "Pyromancer hood",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20706,
+      "name": "Pyromancer robe",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20704,
+      "name": "Pyromancer garb",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20595,
+      "name": "Elder chaos hood",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20520,
+      "name": "Elder chaos robe",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20517,
+      "name": "Elder chaos top",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 19553,
+      "name": "Amulet of torture",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 19547,
+      "name": "Necklace of anguish",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 19544,
+      "name": "Tormented bracelet",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13646,
+      "name": "Farmer's strawhat",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13644,
+      "name": "Farmer's boots",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13642,
+      "name": "Farmer's jacket",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13640,
+      "name": "Farmer's boro trousers",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13261,
+      "name": "Angler boots",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13260,
+      "name": "Angler waders",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13259,
+      "name": "Angler top",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13258,
+      "name": "Angler hat",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12016,
+      "name": "Prospector boots",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12015,
+      "name": "Prospector legs",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12014,
+      "name": "Prospector jacket",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12013,
+      "name": "Prospector helmet",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 11157,
+      "name": "Dreamy Lamp",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 10976,
+      "name": "Long bone",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 10941,
+      "name": "Lumberjack hat",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 10940,
+      "name": "Lumberjack legs",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 10939,
+      "name": "Lumberjack top",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 10933,
+      "name": "Lumberjack boots",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 5557,
+      "name": "Rogue boots",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 5556,
+      "name": "Rogue gloves",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 5555,
+      "name": "Rogue trousers",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 5554,
+      "name": "Rogue mask",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 5553,
+      "name": "Rogue top",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 24187,
+      "name": "Trouver parchment",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 21547,
+      "name": "Small enriched bone",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20790,
+      "name": "Ring of wealth (i1)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20000,
+      "name": "Dragon scimitar (or)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12954,
+      "name": "Dragon defender",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 6739,
+      "name": "Dragon axe",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 6585,
+      "name": "Amulet of fury",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 692,
+      "name": "25,000 Nomad Point Certificate",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 30013,
+      "name": "Penguin King",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 26486,
+      "name": "Rune c'bow (or)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 26482,
+      "name": "Abyssal whip (or)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 11772,
+      "name": "Warrior ring (i)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13271,
+      "name": "Abyssal dagger (p++)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 13265,
+      "name": "Abyssal dagger",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 22244,
+      "name": "Dragon kiteshield (g)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 22242,
+      "name": "Dragon platebody (g)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 22234,
+      "name": "unknown item 22234",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 21549,
+      "name": "Medium enriched bone",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12418,
+      "name": "Dragon sq shield (g)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12417,
+      "name": "Dragon full helm (g)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12416,
+      "name": "Dragon plateskirt (g)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12415,
+      "name": "Dragon platelegs (g)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12414,
+      "name": "Dragon chainbody (g)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12004,
+      "name": "Kraken tentacle",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 9034,
+      "name": "Golden statuette",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 9032,
+      "name": "Pottery scarab",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4759,
+      "name": "Verac's plateskirt",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4757,
+      "name": "Verac's brassard",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4755,
+      "name": "Verac's flail",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4753,
+      "name": "Verac's helm",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4751,
+      "name": "Torag's platelegs",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4749,
+      "name": "Torag's platebody",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4747,
+      "name": "Torag's hammers",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4745,
+      "name": "Torag's helm",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4738,
+      "name": "Karil's leatherskirt",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4736,
+      "name": "Karil's leathertop",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4734,
+      "name": "Karil's crossbow",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4732,
+      "name": "Karil's coif",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4730,
+      "name": "Guthan's chainskirt",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4728,
+      "name": "Guthan's platebody",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4726,
+      "name": "Guthan's warspear",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4724,
+      "name": "Guthan's helm",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4722,
+      "name": "Dharok's platelegs",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4720,
+      "name": "Dharok's platebody",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4718,
+      "name": "Dharok's greataxe",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4716,
+      "name": "Dharok's helm",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4714,
+      "name": "Ahrim's robeskirt",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4712,
+      "name": "Ahrim's robetop",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4710,
+      "name": "Ahrim's staff",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 4708,
+      "name": "Ahrim's hood",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 3694,
+      "name": "Golden wool",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 3140,
+      "name": "Dragon chainbody",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 2425,
+      "name": "Vorkath's head",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 693,
+      "name": "50,000 Nomad Point Certificate",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 22975,
+      "name": "Brimstone Ring",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 12601,
+      "name": "Ring of the gods",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 11836,
+      "name": "Bandos boots",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 8901,
+      "name": "Black mask (10)",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23979,
+      "name": "Crystal Legs",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23975,
+      "name": "Crystal Body",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23971,
+      "name": "Crystal Helm",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23939,
+      "name": "Seren",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 11785,
+      "name": "Armadyl crossbow",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20107,
+      "name": "Ankou socks",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20104,
+      "name": "Ankou's leggings",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20101,
+      "name": "Ankou gloves",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20098,
+      "name": "Ankou top",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20095,
+      "name": "Ankou mask",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20092,
+      "name": "Mummy's feet",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20089,
+      "name": "Mummy's legs",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20086,
+      "name": "Mummy's hands",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20083,
+      "name": "Mummy's body",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 20080,
+      "name": "Mummy's head",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 23185,
+      "name": "Ring of 3rd age",
+      "xp": 1000
+    },       {
+      "level": 1,
+      "icon": 25066,
+      "name": "Infernal axe (or)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 25063,
+      "name": "Infernal pickaxe (or)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 25059,
+      "name": "Infernal harpoon (or)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 24294,
+      "name": "Dagon'hai robe bottom",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 24291,
+      "name": "Dagon'hai robe top",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 24288,
+      "name": "Dagon'hai hat",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 23444,
+      "name": "Tormented bracelet (or)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 23240,
+      "name": "Berserker necklace (or)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 22249,
+      "name": "Necklace of anguish (or)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 21551,
+      "name": "Large enriched bone",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 20724,
+      "name": "Imbued heart",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 20366,
+      "name": "Amulet of torture (or)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 12853,
+      "name": "Amulet of the damned",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 11926,
+      "name": "Odium ward",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 11924,
+      "name": "Malediction ward",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 10887,
+      "name": "Barrelchest anchor",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 9042,
+      "name": "Stone seal",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 9030,
+      "name": "Stone scarab",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 4151,
+      "name": "Abyssal whip",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 2951,
+      "name": "Golden needle",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 2577,
+      "name": "Ranger boots",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 7158,
+      "name": "Dragon 2h sword",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 23528,
+      "name": "Sarachnis cudgel",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 21895,
+      "name": "Dragon Kiteshield",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 21892,
+      "name": "Dragon Platebody",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 20716,
+      "name": "Tome of fire (empty)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 13239,
+      "name": "Primordial boots",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 13237,
+      "name": "Pegasian boots",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 13235,
+      "name": "Eternal boots",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 12926,
+      "name": "Toxic blowpipe",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 12924,
+      "name": "Toxic blowpipe (empty)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 12922,
+      "name": "Tanzanite fang",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 12605,
+      "name": "Treasonous ring",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 12603,
+      "name": "Tyrannical ring",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 11907,
+      "name": "Trident of the seas",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 11834,
+      "name": "Bandos tassets",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 6737,
+      "name": "Berserker ring",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 6733,
+      "name": "Archers ring",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 6731,
+      "name": "Seer's ring",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 21633,
+      "name": "Ancient Wyvern shield",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 12929,
+      "name": "Serpentine helm (uncharged)",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 11832,
+      "name": "Bandos chestplate",
+      "xp": 5000
+    },       {
+      "level": 1,
+      "icon": 24271,
+      "name": "Neitiznot faceguard",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 21553,
+      "name": "Rare enriched bone",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 21079,
+      "name": "Arcane Prayer Scroll",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 19710,
+      "name": "Ring of suffering (i)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 13202,
+      "name": "Ring of the gods (i)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 12902,
+      "name": "Toxic staff (uncharged)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 12807,
+      "name": "Odium ward",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 12806,
+      "name": "Malediction ward",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 12692,
+      "name": "Treasonous ring (i)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 12691,
+      "name": "Tyrannical ring (i)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11773,
+      "name": "Berserker ring (i)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11771,
+      "name": "Archers ring (i)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11770,
+      "name": "Seers ring (i)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11284,
+      "name": "Dragonfire shield",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11283,
+      "name": "Dragonfire shield",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 4083,
+      "name": "Santa's Sled",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 21034,
+      "name": "Dexterous Prayer Scroll",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 21902,
+      "name": "Dragon Crossbow",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 30019,
+      "name": "Holy Death Spawn",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 30018,
+      "name": "Healer Death Spawn",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26498,
+      "name": "unknown item 26498",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26496,
+      "name": "unknown item 26496",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26494,
+      "name": "unknown item 26494",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26492,
+      "name": "Book of law (or)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26490,
+      "name": "unknown item 26490",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26488,
+      "name": "unknown item 26488",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26229,
+      "name": "Ancient ceremonial boots",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 26227,
+      "name": "Ancient ceremonial gloves",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 25376,
+      "name": "Dragon Pickaxe (or)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 25373,
+      "name": "Dragon Harpoon (or)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 22981,
+      "name": "Ferocious gloves",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 22477,
+      "name": "Avernic defender hilt",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 22322,
+      "name": "Avernic defender",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 21028,
+      "name": "Dragon harpoon",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 21006,
+      "name": "Kodai wand",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 20789,
+      "name": "Ring of wealth (i2)",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 20784,
+      "name": "Dragon claws",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 12774,
+      "name": "Frozen abyssal whip",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11920,
+      "name": "Dragon pickaxe",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11830,
+      "name": "Armadyl chainskirt",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11828,
+      "name": "Armadyl chestplate",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 11826,
+      "name": "Armadyl helmet",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 9040,
+      "name": "Gold seal",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 9028,
+      "name": "Golden scarab",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 2948,
+      "name": "Golden pot",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 696,
+      "name": "250,000 Nomad Point Certificate",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 23848,
+      "name": "Corrupted Legs perfected",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 23845,
+      "name": "Corrupted Body perfected",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 23842,
+      "name": "Corrupted Helm perfected",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 13263,
+      "name": "Abyssal bludgeon",
+      "xp": 25000
+    },       {
+      "level": 1,
+      "icon": 13198,
+      "name": "Magma helm (uncharged)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 13196,
+      "name": "Tanzanite helm (uncharged)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 11863,
+      "name": "Rainbow partyhat",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 11808,
+      "name": "Zamorak godsword",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 11806,
+      "name": "Saradomin godsword",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 11804,
+      "name": "Bandos godsword",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 11802,
+      "name": "Armadyl godsword",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 1057,
+      "name": "Red h'ween mask",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 1055,
+      "name": "Blue h'ween mask",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 1053,
+      "name": "Green h'ween mask",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 21000,
+      "name": "Twisted buckler",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 22328,
+      "name": "Justiciar legguards",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 22327,
+      "name": "Justiciar chestguard",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 22326,
+      "name": "Justiciar faceguard",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 21024,
+      "name": "Ancestral robe bottom",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 21021,
+      "name": "Ancestral robe top",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 21018,
+      "name": "Ancestral hat",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12006,
+      "name": "Abyssal tentacle",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 21003,
+      "name": "Elder maul",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 21015,
+      "name": "Dinh's bulwark",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 30017,
+      "name": "Shadow wizard",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 30016,
+      "name": "Shadow archer",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 30015,
+      "name": "Shadow warrior",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33124,
+      "name": "Slayer Guru",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33101,
+      "name": "Praying Respects",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33099,
+      "name": "Bare Hands",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33098,
+      "name": "Woodchipper",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33097,
+      "name": "Molten Miner",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33096,
+      "name": "Skilled Hunter",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33095,
+      "name": "Pyromaniac",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33094,
+      "name": "Slayer Master",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33093,
+      "name": "Demon Slayer",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33089,
+      "name": "Hot Hands",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33088,
+      "name": "Crafting Guru",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33087,
+      "name": "Skilled Thief",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33086,
+      "name": "Dragon Bait",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33082,
+      "name": "Ava's Accomplice",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33081,
+      "name": "Chisel Master",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33080,
+      "name": "Pro Fletcher",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33079,
+      "name": "Runecrafter",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33077,
+      "name": "Iron Giant",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33076,
+      "name": "Sneaky Sneaky",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 26720,
+      "name": "Bandos boots (or)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 26465,
+      "name": "Void Knight Robe (or)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 26463,
+      "name": "Void knight top (or)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 24185,
+      "name": "Void melee helm (I)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 24184,
+      "name": "Void ranger helm (I)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 24183,
+      "name": "Void mage helm (I)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 24182,
+      "name": "Void knight gloves (I)",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 23345,
+      "name": "3rd age druidic cloak",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 23342,
+      "name": "3rd age druidic staff",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 23339,
+      "name": "3rd age druidic bottoms",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 23336,
+      "name": "3rd age druidic top",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 23242,
+      "name": "3rd age plateskirt",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 21012,
+      "name": "Dragon hunter crossbow",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 20014,
+      "name": "3rd age pickaxe",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 20011,
+      "name": "3rd age axe",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12899,
+      "name": "Trident of the swamp",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12825,
+      "name": "Arcane spirit shield",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12821,
+      "name": "Spectral spirit shield",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12600,
+      "name": "Druidic wreath",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12437,
+      "name": "3rd age cloak",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12426,
+      "name": "3rd age longsword",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12424,
+      "name": "3rd age bow",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 12422,
+      "name": "3rd age wand",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10352,
+      "name": "3rd age kiteshield",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10350,
+      "name": "3rd age full helmet",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10348,
+      "name": "3rd age platebody",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10346,
+      "name": "3rd age platelegs",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10344,
+      "name": "3rd age amulet",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10342,
+      "name": "3rd age mage hat",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10340,
+      "name": "3rd age robe",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10338,
+      "name": "3rd age robe top",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10336,
+      "name": "3rd age vambraces",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10334,
+      "name": "3rd age range coif",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10332,
+      "name": "3rd age range legs",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 10330,
+      "name": "3rd age range top",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 2950,
+      "name": "Golden feather",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 19481,
+      "name": "Heavy ballista",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 13576,
+      "name": "Dragon warhammer",
+      "xp": 35000
+    },       {
+      "level": 1,
+      "icon": 33104,
+      "name": "Novice Ranger",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33103,
+      "name": "Novice Magician",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33102,
+      "name": "Novice Zerk",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33100,
+      "name": "Bare Hands x3",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33091,
+      "name": "Yin Yang",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33090,
+      "name": "Magic Master",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33075,
+      "name": "Wildy Slayer",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33074,
+      "name": "PK Master",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 26710,
+      "name": "Dragon warhammer (or)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 26708,
+      "name": "Dragon claws (or)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 25916,
+      "name": "Dragon hunter crossbow (t)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 25432,
+      "name": "Raids Rare Key ++",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33118,
+      "name": "Dragon Fire",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22555,
+      "name": "Thammaron's sceptre",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22552,
+      "name": "Thammaron's sceptre (u)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22550,
+      "name": "Craw's bow",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22547,
+      "name": "Craw's bow (u)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22545,
+      "name": "Viggora's chainmace",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22542,
+      "name": "Viggora's chainmace (u)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33121,
+      "name": "Cannon Extender",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33119,
+      "name": "Overload Protection",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33078,
+      "name": "Slayer Override",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 26719,
+      "name": "Bandos tassets (or)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 26718,
+      "name": "Bandos chestplate (or)",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 13344,
+      "name": "Inverted santa hat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 13343,
+      "name": "Black santa hat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 11862,
+      "name": "Black partyhat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 11847,
+      "name": "Black h'ween mask",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 10559,
+      "name": "Healer Icon",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 10558,
+      "name": "Defender Icon",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 10557,
+      "name": "Collector Icon",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 10556,
+      "name": "Attacker Icon",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 1050,
+      "name": "Santa hat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 1048,
+      "name": "White partyhat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 1046,
+      "name": "Purple partyhat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 1044,
+      "name": "Green partyhat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 1042,
+      "name": "Blue partyhat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 1040,
+      "name": "Yellow partyhat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 1038,
+      "name": "Red partyhat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22978,
+      "name": "Dragon hunter lance",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 24668,
+      "name": "Twisted Ancestral robe bottom",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 24666,
+      "name": "Twisted Ancestral robe top",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 24664,
+      "name": "Twisted Ancestral hat",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 24421,
+      "name": "Inquisitor's plateskirt",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 24420,
+      "name": "Inquisitor's hauberk",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 24419,
+      "name": "Inquisitor's great helm",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 24417,
+      "name": "Inquisitor's mace",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 23995,
+      "name": "Blade Of Saeldor",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22656,
+      "name": "Zuriel Robe Bottoms",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22653,
+      "name": "Zuriel Robe Top",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22650,
+      "name": "Zuriel Hood",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22631,
+      "name": "Statius platelegs",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22628,
+      "name": "Statius platebody",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 22625,
+      "name": "Statius Full helm",
+      "xp": 50000
+    },       {
+      "level": 1,
+      "icon": 33123,
+      "name": "Pc Pro",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33120,
+      "name": "Lucky Coin",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33114,
+      "name": "Casket Master",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33107,
+      "name": "Pro Ranger",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33106,
+      "name": "Pro Magician",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33105,
+      "name": "Pro Zerk",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33085,
+      "name": "Magic Paper CHANCED",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33083,
+      "name": "Deeper Pockets",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26716,
+      "name": "Armadyl chainskirt (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26715,
+      "name": "Armadyl chestplate (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26714,
+      "name": "Armadyl helmet (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26225,
+      "name": "Ancient ceremonial mask",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26223,
+      "name": "Ancient ceremonial legs",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26221,
+      "name": "Ancient ceremonial top",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 25918,
+      "name": "Dragon hunter crossbow (b)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 24517,
+      "name": "Eldritch orb",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 24514,
+      "name": "Volatile orb",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 24511,
+      "name": "Harmonised orb",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22647,
+      "name": "Zuriel staff",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22644,
+      "name": "Morrigans chaps",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22641,
+      "name": "Morrigans body",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22638,
+      "name": "Morrigans Coif",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22619,
+      "name": "Vesta chainskirt",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22616,
+      "name": "Vesta chainbody",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22610,
+      "name": "Vesta Spear",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26712,
+      "name": "Heavy ballista (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26484,
+      "name": "Abyssal tentacle (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33117,
+      "name": "Monk Heals",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33116,
+      "name": "Pet Locator",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33084,
+      "name": "Recharger",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33072,
+      "name": "The Fusionist",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22622,
+      "name": "Statius's warhammer",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 22613,
+      "name": "Vesta Longsword",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26386,
+      "name": "Torva platelegs",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26384,
+      "name": "Torva platebody",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26382,
+      "name": "Torva full helm",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26235,
+      "name": "Zaryte Vambraces",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26233,
+      "name": "Ancient godsword",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 12817,
+      "name": "Elysian spirit shield",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33108,
+      "name": "Swedish Swindle",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 33073,
+      "name": "Dwarf Overload",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26477,
+      "name": "Void melee helm (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26475,
+      "name": "Void ranger helm (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26473,
+      "name": "Void mage helm (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26471,
+      "name": "Elite Void Robe (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26469,
+      "name": "Elite void top (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 26467,
+      "name": "Void knight gloves (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 20788,
+      "name": "Ring of wealth (i3)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 20374,
+      "name": "Zamorak godsword (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 20372,
+      "name": "Saradomin godsword (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 20370,
+      "name": "Bandos godsword (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 20368,
+      "name": "Armadyl godsword (or)",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 18,
+      "name": "Magic gold feather",
+      "xp": 125000
+    },       {
+      "level": 1,
+      "icon": 27232,
+      "name": "Masori chaps",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27229,
+      "name": "Masori body",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27226,
+      "name": "Masori mask",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 20787,
+      "name": "Ring of wealth (i4)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33122,
+      "name": "Pure Skills",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33115,
+      "name": "Voting King",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33092,
+      "name": "Nomad Master",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 24422,
+      "name": "Nightmare staff",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 22324,
+      "name": "Ghrazi rapier",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33159,
+      "name": "Charlie",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33143,
+      "name": "Virtus robe legs",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33142,
+      "name": "Virtus robe top",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33141,
+      "name": "Virtus mask",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27241,
+      "name": "Masori chaps (f)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27238,
+      "name": "Masori body (f)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27235,
+      "name": "Masori mask (f)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 26374,
+      "name": "Zaryte Crossbow",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33162,
+      "name": "Candy Cane Whip",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 30014,
+      "name": "K'klik",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27624,
+      "name": "Ancient sceptre",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 20786,
+      "name": "Ring of wealth (i5)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 3128,
+      "name": "Durial's Green Partyhat",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 22325,
+      "name": "Scythe of vitur",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 22323,
+      "name": "Sanguinesti staff",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 20997,
+      "name": "Twisted bow",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33161,
+      "name": "Candy Cane Scythe",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33160,
+      "name": "Candy Cane Twisted Bow",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 30021,
+      "name": "Roc",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 30020,
+      "name": "Corrupt beast",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27251,
+      "name": "Elidinis' ward (f)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 25736,
+      "name": "Holy Scythe of vitur",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 25734,
+      "name": "Holy Ghrazi rapier",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 25731,
+      "name": "Holy Sanguinesti Staff",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 21129,
+      "name": "Rng of wealth (i5)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 13681,
+      "name": "Cruciferous codex",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33206,
+      "name": "Ascension crossbow",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33149,
+      "name": "Noxious Staff",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33058,
+      "name": "Seren godbow",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 25739,
+      "name": "Sanguine Scythe of vitur",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 30022,
+      "name": "Kratos",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27253,
+      "name": "Elidinis' ward (or)",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 33184,
+      "name": "Blood Scythe",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 28258,
+      "name": "Sanguine torva platelegs",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 28256,
+      "name": "Sanguine torva platebody",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 28254,
+      "name": "Sanguine torva full helm",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27287,
+      "name": "Keris Partisan of corruption",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27275,
+      "name": "Tumeken's Shadow",
+      "xp": 10000
+    },       {
+      "level": 1,
+      "icon": 27246,
+      "name": "Osmumten's fang (or)",
+      "xp": 10000
+    }
+  ]
+}

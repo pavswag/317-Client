@@ -1,0 +1,149 @@
+{
+  "actions": [
+    {
+      "icon": 12644,
+      "name": "Dagannoth Prime",
+      "xp": 375
+    },
+    {
+      "icon": 12645,
+      "name": "Dagannoth Rex",
+      "xp": 375
+    },
+    {
+      "icon": 12643,
+      "name": "Dagannoth Supreme",
+      "xp": 375
+    },
+    {
+      "icon": 12654,
+      "name": "Kalphite Queen",
+      "xp": 625
+    },
+    {
+      "icon": 12653,
+      "name": "King Black Dragon",
+      "xp": 625
+    },
+    {
+      "icon": 21992,
+      "name": "Vorkath",
+      "xp": 875
+    },
+    {
+      "icon": 12921,
+      "name": "Zulrah",
+      "xp": 875
+    },
+    {
+      "icon": 12655,
+      "name": "Kraken",
+      "xp": 875
+    },
+    {
+      "icon": 12655,
+      "name": "Giant Mole",
+      "xp": 875
+    },
+    {
+      "icon": 23495,
+      "name": "Sarachnis",
+      "xp": 875
+    },
+    {
+      "icon": 12650,
+      "name": "General Graardor",
+      "xp": 875
+    },
+    {
+      "icon": 12649,
+      "name": "Kree'Arra",
+      "xp": 875
+    },
+    {
+      "icon": 12651,
+      "name": "Commander Zilyana",
+      "xp": 875
+    },
+    {
+      "icon": 12652,
+      "name": "K'ril Tsutsaroth",
+      "xp": 875
+    },
+    {
+      "icon": 12648,
+      "name": "Themonuclear Smoke Devil",
+      "xp": 1000
+    },
+    {
+      "icon": 13247,
+      "name": "Cerberus",
+      "xp": 1000
+    },
+    {
+      "icon": 21273,
+      "name": "Skotizo",
+      "xp": 1250
+    },
+    {
+      "icon": 13225,
+      "name": "Tztok-Jad",
+      "xp": 1250
+    },
+    {
+      "icon": 11995,
+      "name": "Chaos Elemental",
+      "xp": 1500
+    },
+    {
+      "icon": 11995,
+      "name": "Chaos Fanatic",
+      "xp": 1500
+    },
+    {
+      "icon": 13177,
+      "name": "Venenatis",
+      "xp": 1500
+    },
+    {
+      "icon": 13179,
+      "name": "Vet'ion",
+      "xp": 1500
+    },
+    {
+      "icon": 13181,
+      "name": "Scorpia",
+      "xp": 1500
+    },
+    {
+      "icon": 13178,
+      "name": "Callisto",
+      "xp": 1500
+    },
+    {
+      "icon": 24491,
+      "name": "Nightmare",
+      "xp": 1750
+    },
+    {
+      "icon": 22746,
+      "name": "Alchemical Hydra",
+      "xp": 1750
+    },
+    {
+      "icon": 23757,
+      "name": "Hunllef",
+      "xp": 1750
+    },
+    {
+      "icon": 12816,
+      "name": "Corporeal beast",
+      "xp": 1750
+    },
+    {
+      "icon": 13262,
+      "name": "Abyssal Sire",
+      "xp": 2000
+    }
+  ]
+}
