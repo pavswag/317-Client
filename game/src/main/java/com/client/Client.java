@@ -1628,7 +1628,7 @@ public class Client extends GameEngine implements RSClient {
 			return;
 		}
 
-		System.out.println("Started repacking index " + cacheIndex + " . " + new File(indexLocation(cacheIndex, -1)).getPath());
+		System.out.println("Started repacking index " + cacheIndex + ".");
 		int indexLength = new File(indexLocation(cacheIndex, -1)).listFiles().length;
 		File[] file = new File(indexLocation(cacheIndex, -1)).listFiles();
 		int packed = 0;
@@ -1641,10 +1641,9 @@ public class Client extends GameEngine implements RSClient {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("Error packing index " + cacheIndex + ".");
 		}
-
+		System.out.println("Packed " + (packed + "/" + indexLength) + " files to index " + cacheIndex + ".");
 	}
 
 	public boolean pack(File file, int cacheIndex) {
@@ -12244,7 +12243,8 @@ public class Client extends GameEngine implements RSClient {
 			}
 
 			if (Configuration.packIndexData) {
-				repackCacheAll();
+//				repackCacheAll();
+				repackCacheIndex(4); // maps
 			}
 			Frame.method528();
 
