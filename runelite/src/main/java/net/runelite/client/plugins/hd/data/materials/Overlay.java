@@ -243,7 +243,7 @@ public enum Overlay {
     CRAFTING_GUILD_TILE_3(4, Area.CRAFTING_GUILD, GroundMaterial.MARBLE_1_GLOSS, p -> p.blended(false)),
 
     // Edgeville
-    EDGEVILLE_BANK_TILE_1(3, Area.EDGEVILLE_BANK, GroundMaterial.MARBLE_2_GLOSS, p -> p
+    /*EDGEVILLE_BANK_TILE_1(3, Area.EDGEVILLE_BANK, GroundMaterial.MARBLE_2_GLOSS, p -> p
         .blended(false)
         .blendedAsOpposite(true)
         .lightness(22)),
@@ -286,7 +286,7 @@ public enum Overlay {
     EDGEVILLE_BRIDGE_TEXTURE(12, Area.EDGEVILLE_BRIDGE, GroundMaterial.VARROCK_PATHS, p -> p
         .lightness(32)
         .blended(true)
-    ),
+    ),*/
 
     // Goblin Village
     GOBLIN_VILLAGE_TILES_BLEND_FIX_OVERLAY(Area.GOBLIN_VILLAGE_COOKS_CHAMBER_BLEND_FIX, GroundMaterial.WORN_TILES, p -> p.ids(11).blended(true)),

@@ -60,14 +60,14 @@ public enum Underlay {
     LUMBRIDGE_CASTLE_TILE(56, Area.LUMBRIDGE_CASTLE_BASEMENT, GroundMaterial.MARBLE_2_SEMIGLOSS, p -> p.blended(false)),
 
     // Edgeville
-    EDGEVILLE_PATH_OVERLAY_48(Area.EDGEVILLE_PATH_OVERLAY, GroundMaterial.VARROCK_PATHS, p -> p
+    /*EDGEVILLE_PATH_OVERLAY_48(Area.EDGEVILLE_PATH_OVERLAY, GroundMaterial.VARROCK_PATHS, p -> p
         .blendedAsOpposite(true)
         .hue(0)
         .shiftLightness(8)
         .saturation(0)
         .ids(48, 50, 64)
         .replaceWithIf(WINTER_EDGEVILLE_PATH, plugin -> plugin.configWinterTheme)
-    ),
+    ),*/
 
     // Varrock
     VARROCK_JULIETS_HOUSE_UPSTAIRS(8, Area.VARROCK_JULIETS_HOUSE, GroundMaterial.NONE, p -> p.blended(false)),

@@ -333,7 +333,7 @@ public enum Area
 	),
 
 	// Edgeville
-	EDGEVILLE_PATH_OVERLAY(
+	/*EDGEVILLE_PATH_OVERLAY(
 		new AABB(3087, 3501, 3099, 3502), // path north of bank
 		new AABB(3079, 3502, 3085, 3503), // path between bank and general store
 		new AABB(3105, 3508, 3113, 3507), // path south of the prison
@@ -414,7 +414,7 @@ public enum Area
 	),
 	EDGEVILLE_GENERAL_STORE_FLOOR(
 			new AABB(3084, 3513, 3076, 3507)
-	),
+	),*/
 
 	// Seers Indoors
 	SEERS_BANK(2719, 3497, 2730, 3487),
