@@ -134,6 +134,7 @@ public enum PlayerRights {
         return rights;
     }
 
+    static PlayerRights[] values = PlayerRights.values();
     public static PlayerRights[] ordinalsToArray(int[] ordinals) {
         PlayerRights[] rights = new PlayerRights[ordinals.length];
         for (int index = 0; index < ordinals.length; index++) {
@@ -145,11 +146,14 @@ public enum PlayerRights {
     public static Pair<Integer, PlayerRights[]> readRightsFromPacket(Buffer inStream) {
         int rightsAmount = inStream.readUnsignedByte();
         int[] ordinals = new int[rightsAmount];
+
         for (int right = 0; right < rightsAmount; right++) {
             ordinals[right] = inStream.readUnsignedByte();
+            System.out.println("ORDINALS: " + ordinals[right]);
         }
         return Pair.of(rightsAmount, PlayerRights.ordinalsToArray(ordinals));
     }
+
 
     public static boolean hasRightsOtherThan(PlayerRights[] rights, PlayerRights playerRight) {
         return Arrays.stream(rights).anyMatch(right -> right != playerRight);

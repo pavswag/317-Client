@@ -31,7 +31,7 @@ public class Configuration {
 	public static final String CLIENT_TITLE = "Exiled";
 	public static final String WEBSITE = "";
 	public static final String DEDICATED_SERVER_ADDRESS = "localhost";
-	public static Connection CONNECTION = Connection.DEVELOPMENT;
+	public static Connection CONNECTION = Connection.WORLD_1;
 	public static final int TEST_PORT = 43595;
 	public static final String CACHE_NAME = ".exiled";
 	public static final String DEV_CACHE_NAME = "local_cache";

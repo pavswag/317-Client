@@ -1651,7 +1651,7 @@ public class Client extends GameEngine implements RSClient {
 		byte[] data = fileToByteArray(file);
 		if (data != null && data.length > 0) {
 			decompressors[cacheIndex].write(data.length, data, fileIndex);
-			System.out.println("Packed " + file.toString() + " to index " + cacheIndex);
+			System.out.println("Packed " + file + " to index " + cacheIndex);
 			return true;
 		} else {
 			System.out.println("No file to pack: " + file);
@@ -2177,23 +2177,6 @@ public class Client extends GameEngine implements RSClient {
 					(npc.anInt1540 - 1) * 64 + 60, npc.x, npc, npc.dynamic);
 		}
 	}
-
-	public void loadError() {
-		String s = "ondemand";// was a constant parameter
-		System.out.println(s);
-		try {
-			getAppletContext().showDocument(new URL(getCodeBase(), "loaderror_" + s + ".html"));
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-		do
-			try {
-				Thread.sleep(1000L);
-			} catch (Exception _ex) {
-			}
-		while (true);
-	}
-
 	public int drawTabInterfaceHoverParent;
 	public int drawTabInterfaceHover;
 	public int drawTabInterfaceHoverLast;
@@ -10024,7 +10007,6 @@ public class Client extends GameEngine implements RSClient {
 										xPosition += modcon.myWidth;
 									}
 									xPosition += 2;
-									//yPosition -= 2;
 									break;
 								}
 							}
@@ -11071,10 +11053,8 @@ public class Client extends GameEngine implements RSClient {
 
 				Preferences.getPreferences().updateClientConfiguration();
 				Preferences.getPreferences().updateClientConfiguration();
-				@SuppressWarnings("unused")
-				int rights = socketStream.read();
+				socketStream.read();
 				flagged = socketStream.read() == 1;
-				logger.debug("Login accepted, rights={}, flagged={}", rights, flagged);
 				aLong1220 = 0L;
 				anInt1022 = 0;
 				//mouseDetection.coordsIndex = 0;
@@ -12405,7 +12385,7 @@ public class Client extends GameEngine implements RSClient {
 			scrollBar1 = new Sprite(streamLoader_2, "scrollbar", 0);
 			scrollBar2 = new Sprite(streamLoader_2, "scrollbar", 1);
 			for (int i = 0; i < modIcons.length; i++) {
-				modIcons[i] = new Sprite("Player/MODICONS " + i + "");
+				modIcons[i] = new Sprite("Player/MODICONS " + i);
 			}
 
 			for (int index = 0; index < GameTimerHandler.TIMER_IMAGES.length; index++) {
@@ -19650,12 +19630,7 @@ public class Client extends GameEngine implements RSClient {
 										.title(Configuration.CLIENT_TITLE + " private message from " + l5)
 										.text(s9)
 										.position(Pos.BOTTOM_RIGHT)
-										.onAction( new ActionHandler<Notify>() {
-											@Override
-											public void handle(Notify value) {
-												pmTabToReply(l5);
-											}
-										})
+										.onAction(value -> pmTabToReply(l5))
 										.hideAfter(5000)
 										.shake(250, 5)
 										.darkStyle()      // There are two default themes darkStyle() and default.
