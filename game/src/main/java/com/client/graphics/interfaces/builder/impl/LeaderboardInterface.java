@@ -30,7 +30,7 @@ public class LeaderboardInterface extends InterfaceBuilder {
         addSprite(nextInterface(), bg);
         child(x, y);
 
-        addText(nextInterface(), 2, DEFAULT_TEXT_COLOR, true, "Exiled Leaderboard");
+        addText(nextInterface(), 2, DEFAULT_TEXT_COLOR, true, "Grimoire Leaderboard");
         child(x + 265, y + 11);
 
         child(Interfaces.CLOSE_BUTTON_SMALL, x + 470, y + 11);

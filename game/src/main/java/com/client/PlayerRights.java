@@ -149,7 +149,6 @@ public enum PlayerRights {
 
         for (int right = 0; right < rightsAmount; right++) {
             ordinals[right] = inStream.readUnsignedByte();
-            System.out.println("ORDINALS: " + ordinals[right]);
         }
         return Pair.of(rightsAmount, PlayerRights.ordinalsToArray(ordinals));
     }
@@ -179,7 +178,7 @@ public enum PlayerRights {
         StringBuilder builder = new StringBuilder();
         for (PlayerRights right : rights) {
             if (right.hasCrown()) {
-                builder.append("@cr" + right.crownId() + "@");
+                builder.append("@cr").append(right.crownId()).append("@");
             }
         }
         return builder.toString();
@@ -189,7 +188,7 @@ public enum PlayerRights {
         StringBuilder builder = new StringBuilder();
         for (PlayerRights right : rights) {
             if (right.hasCrown()) {
-                builder.append("@cr" + (right.crownId()-1) + "@ ");
+                builder.append("@cr").append(right.crownId() - 1).append("@ ");
             }
         }
         return builder.toString();

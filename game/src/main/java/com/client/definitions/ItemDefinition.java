@@ -1098,7 +1098,7 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 22316:
                 itemDef.name = "Sword of Exiled";
-                //itemDef.description = "The Sword of Exiled.";
+                //itemDef.description = "The Sword of Grimoire.";
                 break;
             case 30110:
                 itemDef.setDefaults();

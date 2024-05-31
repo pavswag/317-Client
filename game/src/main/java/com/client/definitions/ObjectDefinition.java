@@ -123,8 +123,8 @@ public final class ObjectDefinition implements RSObjectComposition {
 				objectDef.actions = new String[]{ "Enter", null, null, null, null};
 				break;
 			case 36062:
-				objectDef.description = "Teleports you anywhere around Exiled.";
-				objectDef.actions = new String[] { "Exiled", "Previous Location", null, null, null };
+				objectDef.description = "Teleports you anywhere around Grimoire.";
+				objectDef.actions = new String[] { "Grimoire", "Previous Location", null, null, null };
 				break;
 			case 4152:
 				objectDef.name = "Skilling Portal";
@@ -210,7 +210,7 @@ public final class ObjectDefinition implements RSObjectComposition {
 				objectDef.name = "@pur@Platinum Altar";
 				break;
 			case 29064:
-				objectDef.name = "Exiled Leaderboards";
+				objectDef.name = "Grimoire Leaderboards";
 				objectDef.actions = new String[] { "View", null, null, null, null };
 				break;
 			case 32508:

@@ -167,7 +167,7 @@ public final class NpcDefinition implements RSNPCComposition {
             entityDef.actions[0] = "Teleport";
         }
         if (i == 7599) {
-            entityDef.name = "Exiled Guide";
+            entityDef.name = "Grimoire Guide";
         }
         if (i == 4305) {
             entityDef.name = "Drunken cannoneer";

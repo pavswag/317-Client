@@ -28,12 +28,12 @@ public class Configuration {
 
 
 	public static boolean SAVE_ACCOUNTS = true;
-	public static final String CLIENT_TITLE = "Exiled";
+	public static final String CLIENT_TITLE = "Grimoire";
 	public static final String WEBSITE = "";
 	public static final String DEDICATED_SERVER_ADDRESS = "localhost";
-	public static Connection CONNECTION = Connection.WORLD_1;
+	public static Connection CONNECTION = Connection.DEVELOPMENT;
 	public static final int TEST_PORT = 43595;
-	public static final String CACHE_NAME = ".exiled";
+	public static final String CACHE_NAME = ".Grimoire";
 	public static final String DEV_CACHE_NAME = "local_cache";
 	public static final String CACHE_NAME_DEV = CACHE_NAME + "_dev";
 

@@ -166,7 +166,7 @@ public class Rasterizer2D extends Cacheable implements RSRasterizer2D {
                 int dest_blue = (pixels[pixel_offset] & 0xff) * dest_intensity;
                 int result_rgb = ((src_red + dest_red >> 8) << 16) + ((src_green + dest_green >> 8) << 8) + (src_blue + dest_blue >> 8);
 
-                drawAlpha(pixels, pixel_offset++, result_rgb, 255);
+                drawAlpha(pixels, pixel_offset++, result_rgb, alpha);
             }
         }
     }

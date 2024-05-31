@@ -9,7 +9,7 @@ import net.arikia.dev.drpc.DiscordRichPresence;
 public class RPC {
     public static String AppId = "1003641398689533982";
 
-    public static String line1 = "Exiled";
+    public static String line1 = "Grimoire";
 
     public static String line2 = "";
 
@@ -36,7 +36,7 @@ public class RPC {
 
     public static void createNewPresence() {
         DiscordRichPresence rich = new DiscordRichPresence
-                .Builder("Playing Exiled")
+                .Builder("Playing Grimoire")
                 .setDetails("In Menu")
                 .setBigImage("ex_logo", "")
                 .setStartTimestamps(System.currentTimeMillis())
@@ -46,7 +46,7 @@ public class RPC {
 
     public static void updatePresence(String details) {
         DiscordRichPresence rich = new DiscordRichPresence
-                .Builder("Playing Exiled")
+                .Builder("Playing Grimoire")
                 .setDetails(details)
                 .setBigImage("ex_logo", "")
                 .setStartTimestamps(System.currentTimeMillis())

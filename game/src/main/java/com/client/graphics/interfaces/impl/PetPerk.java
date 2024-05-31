@@ -134,7 +134,7 @@ public class PetPerk extends RSInterface {
         petDescriptionText.scrollMax = 350;
         petDescriptionText.totalChildren(1);
         petDescriptionText.child(0, 48854, 5, 5);
-        addText(48854, "The Vote Genie Pet is a beloved pet on Exiled, obtaining with a rare chance upon claiming a vote or purchased from the vote store.", tda, 2, 0xff9933, true);
+        addText(48854, "The Vote Genie Pet is a beloved pet on Grimoire, obtaining with a rare chance upon claiming a vote or purchased from the vote store.", tda, 2, 0xff9933, true);
         get(48854).wrapText = true;
         get(48854).width = 315;
 
@@ -267,7 +267,7 @@ public class PetPerk extends RSInterface {
 
     @RequiredArgsConstructor
     private enum PetDescriptions {
-        VOTE_PET(327, "The Vote Genie Pet is a beloved pet on Exiled, obtaining with a rare chance upon claiming a vote or purchased from the vote store."),
+        VOTE_PET(327, "The Vote Genie Pet is a beloved pet on Grimoire, obtaining with a rare chance upon claiming a vote or purchased from the vote store."),
         KREE_ARRA(6643, "The Kree'arra pet is a rare pet obtained as a drop from the respective Armadyl Godwards boss, Kree'Arra. This pet is often saught for its looks, being one of the only flying pets in the game."),
 
 

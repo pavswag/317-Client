@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
@@ -87,10 +88,8 @@ public class SpriteLoader {
 	public static AnimatedSprite fetchAnimatedSprite(String location) {
 		if (!animatedSpriteMap.containsKey(location)) {
 			AnimatedSprite tempSprite = new AnimatedSprite(location);
-			if (tempSprite != null) {
-				animatedSpriteMap.put(location, tempSprite);
-			}
-		}
+            animatedSpriteMap.put(location, tempSprite);
+        }
 		return animatedSpriteMap.get(location);
 	}
 
@@ -105,7 +104,7 @@ public class SpriteLoader {
 				directory.mkdir();
 			}
 			DataUtils.writeFile(
-					new File(directory.getAbsolutePath() + System.getProperty("file.separator") + sprite.id + ".png"),
+					new File(directory.getAbsolutePath() + FileSystems.getDefault().getSeparator() + sprite.id + ".png"),
 					sprite.spriteData);
 		}
 		sprites[sprite.id] = new Sprite(sprite.spriteData);
