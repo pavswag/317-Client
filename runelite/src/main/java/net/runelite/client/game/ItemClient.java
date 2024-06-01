@@ -67,14 +67,15 @@ public class ItemClient
 		String resourceName = "/items.json";
 		InputStream inputStream = getClass().getResourceAsStream(resourceName);
 
-        try (inputStream) {
-            if (inputStream == null) {
-                throw new IOException("Resource not found: " + resourceName);
-            }
-            return new Gson().fromJson(new InputStreamReader(inputStream, StandardCharsets.UTF_8), ItemPrice[].class);
-        } catch (JsonParseException ex) {
-            throw new IOException(ex);
-        }
+		if (inputStream == null) {
+			throw new IOException("Resource not found: " + resourceName);
+		}
+
+		try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+			return new Gson().fromJson(reader, ItemPrice[].class);
+		} catch (JsonParseException ex) {
+			throw new IOException(ex);
+		}
 	}
 
 	public Map<Integer, ItemStats> getStats() throws IOException

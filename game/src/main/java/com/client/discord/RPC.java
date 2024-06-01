@@ -7,21 +7,21 @@ import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
 public class RPC {
-    public static String AppId = "1003641398689533982";
+    public static String AppId = "1246212957545955398";
 
     public static String line1 = "Grimoire";
 
     public static String line2 = "";
 
-    public static String image = "ex_logo";
+    public static String image = "runelite_splash";
 
-    private static String OS = System.getProperty("os.name").toLowerCase();
+    private static final String OS = System.getProperty("os.name").toLowerCase();
 
     public static int currentRegion = 0;
     public static long SkillTimeout = 0;
 
     public static boolean isWindows() {
-        return (OS.indexOf("win") >= 0);
+        return (OS.contains("win"));
     }
 
     public static void init() {
@@ -38,7 +38,7 @@ public class RPC {
         DiscordRichPresence rich = new DiscordRichPresence
                 .Builder("Playing Grimoire")
                 .setDetails("In Menu")
-                .setBigImage("ex_logo", "")
+                .setBigImage("runelite_splash", "")
                 .setStartTimestamps(System.currentTimeMillis())
                 .build();
         DiscordRPC.discordUpdatePresence(rich);
@@ -48,7 +48,7 @@ public class RPC {
         DiscordRichPresence rich = new DiscordRichPresence
                 .Builder("Playing Grimoire")
                 .setDetails(details)
-                .setBigImage("ex_logo", "")
+                .setBigImage("runelite_splash", "")
                 .setStartTimestamps(System.currentTimeMillis())
                 .build();
         DiscordRPC.discordUpdatePresence(rich);

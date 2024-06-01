@@ -2,10 +2,6 @@ package com.client;
 
 import com.client.sign.Signlink;
 import com.google.common.base.Preconditions;
-import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.ArchiveException;
-import org.apache.commons.compress.archivers.ArchiveInputStream;
-import org.apache.commons.compress.archivers.ArchiveStreamFactory;
 import org.apache.commons.compress.archivers.sevenz.SevenZArchiveEntry;
 import org.apache.commons.compress.archivers.sevenz.SevenZFile;
 
@@ -16,7 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Enumeration;
 import java.util.Objects;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 public class CacheDownloader {
 
@@ -150,12 +150,14 @@ public class CacheDownloader {
 	}
 
 	public void unZip() throws IOException {
-		try (var sevenZFile = new SevenZFile(new File(fileLocation.toString()))) {
-			SevenZArchiveEntry entry;
+        InputStream in = new BufferedInputStream(Files.newInputStream(Paths.get(fileLocation.toString())));
+        ZipInputStream zin = new ZipInputStream(in);
+		try (var ignored = new ZipFile(new File(fileLocation.toString()))) {
+            ZipEntry entry;
 			int numWritten = 0;
-			int files = countRegularFiles(new File(fileLocation.toString()));
+			int files = countRegularFiles(new ZipFile(fileLocation.toString()));
 
-			while ((entry = sevenZFile.getNextEntry()) != null) {
+			while ((entry = zin.getNextEntry()) != null) {
 				String fileName = entry.getName();
 				File newFile = new File(Signlink.getCacheDirectory() + File.separator + fileName);
 
@@ -167,7 +169,7 @@ public class CacheDownloader {
 
 					if (fileName.equals(fileLocation.getFileName().toString())) {
 						try {
-							unzip(sevenZFile, fileLocation.toString());
+							unzip(zin, fileLocation.toString());
 						}
 						catch (IOException e) {
 							e.printStackTrace(System.err);
@@ -179,7 +181,7 @@ public class CacheDownloader {
 					if (!file.exists())
 						Preconditions.checkState(file.mkdirs(), "Cannot create file.");
 					try {
-						unzip(sevenZFile, Signlink.getCacheDirectory() + fileName);
+						unzip(zin, Signlink.getCacheDirectory() + fileName);
 					}
 					catch (IOException e) {
 						e.printStackTrace(System.err);
@@ -196,7 +198,7 @@ public class CacheDownloader {
 		}
 	}
 
-	private void unzip(SevenZFile sevenZFile, String outputFilePath) throws IOException {
+	private void unzip(ZipInputStream sevenZFile, String outputFilePath) throws IOException {
 		try (var out = new BufferedOutputStream(new FileOutputStream(outputFilePath))) {
 			byte[] buffer = new byte[1024];
 			int bytesRead;
@@ -205,29 +207,17 @@ public class CacheDownloader {
 			}
 		}
 	}
-	private static int countRegularFiles(File sevenZFile) throws IOException {
-		int count = 0;
 
-		File tempFile = File.createTempFile("tempSevenZFile", ".7z");
-		try {
-			// Create a temporary file to copy the content of the original SevenZFile
-			Files.copy(sevenZFile.toPath(), tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-			// Create a new SevenZFile instance for counting
-			try (SevenZFile tempSevenZFile = new SevenZFile(tempFile)) {
-				SevenZArchiveEntry entry;
-				while ((entry = tempSevenZFile.getNextEntry()) != null) {
-					if (!entry.isDirectory()) {
-						count++;
-					}
-				}
+	private static int countRegularFiles(final ZipFile zipFile) {
+		final Enumeration<? extends ZipEntry> entries = zipFile.entries();
+		int numRegularFiles = 0;
+		while (entries.hasMoreElements()) {
+			if (! entries.nextElement().isDirectory()) {
+				++numRegularFiles;
 			}
-		} finally {
-			// Cleanup: delete the temporary file
-			tempFile.delete();
 		}
-
-		return count;
+		log.info("Number of regular files in zip: " + numRegularFiles);
+		return numRegularFiles;
 	}
 
 

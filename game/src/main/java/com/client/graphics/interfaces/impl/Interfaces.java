@@ -3022,6 +3022,8 @@ public final class Interfaces extends RSInterface {
         tab.totalChildren(20);
         int x = 114;
         int y = 2;
+
+        y += 3;
         addSprite(37501, 0, "Interfaces/discord/Interface");
         tab.child(0, 37501, 10 + x, y + 2);
         //exit
@@ -3062,7 +3064,7 @@ public final class Interfaces extends RSInterface {
         tab.child(15, 37516, 111 + x, y + 247);
 
         addText(37517, "Sync", tda, 0, 0xffb000);
-        tab.child(16, 37517, 50 + x, y + 302);
+        tab.child(16, 37517, 50 + x + 5, y + 302);
         addText(37518, "Toggle", tda, 0, 0xffb000);
         tab.child(17, 37518, 130 + x, y + 302);
         addText(37519, "Disconnect", tda, 0, 0xffb000);
@@ -5778,7 +5780,7 @@ public final class Interfaces extends RSInterface {
         addSprite(interfaceId + index++, 0, dir);
         configHoverButton1(interfaceId + index, "Close", dir, 40, 41, 41, 41, false, new int[]{interfaceId + index++});
         addText(interfaceId + index++, "Character Information Panel", tda, 1, 0xff9933, false, true);
-//55164
+
         addText(interfaceId + index++, "99", tda, 0, 0xff9933, false, true);
         addText(interfaceId + index++, "99", tda, 0, 0xff9933, false, true);
         addText(interfaceId + index++, "99", tda, 0, 0xff9933, false, true);
@@ -5811,6 +5813,8 @@ public final class Interfaces extends RSInterface {
         addChar(interfaceId + index++);
 
         index = 0;
+        basex -= 3;
+        basey += 6;
         tab.child(index++, interfaceId + index, basex, basey);
         tab.child(index++, interfaceId + index, basex + 475, basey + 10);
         tab.child(index++, interfaceId + index, basex + 175, basey + 10);

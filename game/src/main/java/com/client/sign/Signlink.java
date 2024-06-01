@@ -3,6 +3,7 @@ package com.client.sign;
 import java.applet.Applet;
 import java.io.*;
 import java.net.*;
+import java.nio.file.FileSystems;
 
 import com.client.Configuration;
 import com.google.common.base.Preconditions;
@@ -186,7 +187,7 @@ public final class Signlink implements Runnable {
 
 	}
 
-	public static final String separator = System.getProperty("file.separator");
+	public static final String separator = FileSystems.getDefault().getSeparator();
 	private static final String devCache = "." + separator + Configuration.DEV_CACHE_NAME + separator;
 	private static Boolean devCacheEnabled = false;
 
@@ -208,7 +209,7 @@ public final class Signlink implements Runnable {
 			System.out.println("Development cache detected but client was not launched in developer mode (-d run argument).");
 		}
 
-		return RuneLite.CACHE_DIR.getAbsolutePath() + "/";
+		return RuneLite.CACHE_DIR.getAbsolutePath() + File.separator;
 	}
 
 	public static String findcachedirORIG() {

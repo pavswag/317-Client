@@ -843,6 +843,7 @@ public class Client extends GameEngine implements RSClient {
                                 s1 = s1.substring(4 + s2.length());
                             }
                         }
+
                         if (chatType == 0 || chatType == 99) {
                             if (chatTypeView == 5 || chatTypeView == 0) {
                                 int lineCount = 1;
@@ -1103,11 +1104,23 @@ public class Client extends GameEngine implements RSClient {
             case 9: // $100
                 icon = 46;
                 break;
+            case 10:
+                icon = 9;
+                break;
+            case 13:
+                icon = 12;
+                break;
+            case 14:
+                icon = 13;
+                break;
             case 17: // $250
                 icon = 45;
                 break;
             case 18: // $500
                 icon = 44;
+                break;
+            case 28:
+                icon = 27;
                 break;
             case 30: // Event Manager
                 icon = 28;
@@ -1124,10 +1137,16 @@ public class Client extends GameEngine implements RSClient {
             case 35:
                 icon = 49;
                 break;
+            case 93:
+                icon = 92;
+                break;
+            case 94:
+                icon = 93;
+                break;
         }
         if (icon != -1) {
             Sprite modcon = modIcons[icon];
-            if (icon >= 40) {
+            if (icon != 92 && icon != 93 && icon >= 40) {
                 modcon = SpriteLoader.fetchAnimatedSprite(Signlink.getCacheDirectory() + "/sprites/gifs/" + icon + ".gif").getInstance(modcon.myWidth, modcon.myHeight);
             }
             if (modcon != null)
@@ -1171,11 +1190,23 @@ public class Client extends GameEngine implements RSClient {
             case 9: // $100
                 icon = 46;
                 break;
+            case 10:
+                icon = 9;
+                break;
+            case 13:
+                icon = 12;
+                break;
+            case 14:
+                icon = 13;
+                break;
             case 17: // $250
                 icon = 45;
                 break;
             case 18: // $500
                 icon = 44;
+                break;
+            case 28:
+                icon = 27;
                 break;
             case 30: // Event Manager
                 icon = 28;
@@ -1192,10 +1223,16 @@ public class Client extends GameEngine implements RSClient {
             case 35:
                 icon = 49;
                 break;
+            case 93:
+                icon = 92;
+                break;
+            case 94:
+                icon = 93;
+                break;
         }
         if (icon != -1 && modIcons[icon] != null) {
             Sprite modcon = modIcons[icon];
-            if (icon >= 40) {
+            if (icon != 92 && icon != 93 && icon >= 40) {
                 modcon = SpriteLoader.fetchAnimatedSprite(Signlink.getCacheDirectory() + "/sprites/gifs/" + icon + ".gif").getInstance(modcon.myWidth, modcon.myHeight);
                 yOffset -= 2;
             }
@@ -1239,11 +1276,23 @@ public class Client extends GameEngine implements RSClient {
             case 9: // $100
                 icon = 46;
                 break;
+            case 10:
+                icon = 9;
+                break;
+            case 13:
+                icon = 12;
+                break;
+            case 14:
+                icon = 13;
+                break;
             case 17: // $250
                 icon = 45;
                 break;
             case 18: // $500
                 icon = 44;
+                break;
+            case 28:
+                icon = 27;
                 break;
             case 30: // Event Manager
                 icon = 28;
@@ -1260,14 +1309,20 @@ public class Client extends GameEngine implements RSClient {
             case 35:
                 icon = 49;
                 break;
+            case 93:
+                icon = 92;
+                break;
+            case 94:
+                icon = 93;
+                break;
         }
         if (icon != -1 && modIcons[icon] != null) {
             Sprite modcon = modIcons[icon];
-            if (icon >= 40) {
+            if (icon != 92 && icon != 93 && icon >= 40) {
                 modcon = SpriteLoader.fetchAnimatedSprite(Signlink.getCacheDirectory() + "/sprites/gifs/" + icon + ".gif").getInstance(modcon.myWidth, modcon.myHeight);
                 yOffset -= 2;
             }
-            modcon.drawAdvancedSprite(xPos + xOffset, yPos + yOffset - modcon.myHeight, 255);
+            modcon.drawAdvancedSprite(xPos + xOffset + 2, yPos + yOffset - modcon.myHeight - 2, 255);
             return modcon;
         }
         return null;
@@ -4412,7 +4467,7 @@ public class Client extends GameEngine implements RSClient {
         frameMode(false);
         requestMusic(SoundConstants.SCAPE_RUNE);
         if (informationFile.isUsernameRemembered()) {
-            if (localPlayer.getDisplayedRights().size() > 0) {
+            if (!localPlayer.getDisplayedRights().isEmpty()) {
                 AccountManager.add(myUsername, myPassword, localPlayer.getDisplayedRights().get(0).crownId());
             } else {
                 AccountManager.add(myUsername, myPassword, 0);
@@ -9403,7 +9458,7 @@ public class Client extends GameEngine implements RSClient {
                     s = s.substring(4 + s2.length());
                 }
             }
-            if (s != null && s.startsWith("<col=") && s.indexOf("</col>") != -1) {
+            if (s.startsWith("<col=") && s.contains("</col>")) {
                 s = s.substring(s.indexOf("</col>") + 6);
             }
             if (j1 == 0 || j1 == 99) {
@@ -17514,7 +17569,7 @@ public class Client extends GameEngine implements RSClient {
             }
 
             loginAsset6.drawAdvancedSprite(325, 350, 255);
-            
+
             if (loginbutton) {
                 loginAsset7.drawAdvancedSprite(325, 350, 255);
                 addTooltip("Login.");

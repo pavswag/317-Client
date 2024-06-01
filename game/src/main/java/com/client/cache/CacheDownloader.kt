@@ -39,11 +39,11 @@ class CacheDownloader(
     var update: MutableList<String> = mutableListOf()
 
     init {
-        if (writeOnlineHash) {
+  /*      if (writeOnlineHash) {
             updateCheck = false
             writeHashes()
         }
-        initialize()
+        initialize()*/
     }
 
     private fun initialize() {

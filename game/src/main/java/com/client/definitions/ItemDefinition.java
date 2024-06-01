@@ -198,7 +198,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.stackable = false;
                 break;
             case 26551:
-                itemDef.name = "Exiled grimoire";
+                itemDef.name = "Grimoire's grimoire";
                 itemDef.interfaceOptions = new String[] { null, "Wield", "Read", null, "Drop" };
                 break;
             case 8232:
@@ -1097,7 +1097,7 @@ public final class ItemDefinition implements RSItemComposition {
                 //itemDef.description = "I can see some coins inside.";
                 break;
             case 22316:
-                itemDef.name = "Sword of Exiled";
+                itemDef.name = "Sword of Grimoire";
                 //itemDef.description = "The Sword of Grimoire.";
                 break;
             case 30110:

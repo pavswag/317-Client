@@ -18,7 +18,7 @@ public class Configuration {
 	 * This is read on startup to tell if the cache is out of date or not.
 	 */
 	public static final int CACHE_VERSION = 16; // Set this to the same value, v0.030 = 30, v1.120 = 1120 -- LIVE Server = 13
-	public static final String CACHE_LINK = "http://94.72.122.196:8080/api/v1/cache/beta";
+	public static final String CACHE_LINK = "https://www.valorrsps.com/grimoire/.Grimoire.zip";
 
 	/**
 	 * The server version. The cache path is append with a _v1/2/3 etc for the version number
@@ -31,7 +31,7 @@ public class Configuration {
 	public static final String CLIENT_TITLE = "Grimoire";
 	public static final String WEBSITE = "";
 	public static final String DEDICATED_SERVER_ADDRESS = "localhost";
-	public static Connection CONNECTION = Connection.DEVELOPMENT;
+	public static Connection CONNECTION = Connection.WORLD_1;
 	public static final int TEST_PORT = 43595;
 	public static final String CACHE_NAME = ".Grimoire";
 	public static final String DEV_CACHE_NAME = "local_cache";
