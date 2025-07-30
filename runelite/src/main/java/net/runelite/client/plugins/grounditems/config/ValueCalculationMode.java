@@ -33,7 +33,7 @@ import lombok.RequiredArgsConstructor;
 public enum ValueCalculationMode
 {
 	HA("High Alchemy"), // calc highlight by HA value
-	GE("Nomad Points"), // calc by GE
+	GE("Upgrade Points"), // calc by GE
 	HIGHEST("Highest"); // use whatever is highest.
 
 	private final String name;

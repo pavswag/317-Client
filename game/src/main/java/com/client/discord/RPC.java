@@ -7,9 +7,9 @@ import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
 public class RPC {
-    public static String AppId = "1246212957545955398";
+    public static String AppId = "561387969328709644";
 
-    public static String line1 = "Grimoire";
+    public static String line1 = "Turmoil";
 
     public static String line2 = "";
 
@@ -36,7 +36,7 @@ public class RPC {
 
     public static void createNewPresence() {
         DiscordRichPresence rich = new DiscordRichPresence
-                .Builder("Playing Grimoire")
+                .Builder("Playing Turmoil")
                 .setDetails("In Menu")
                 .setBigImage("runelite_splash", "")
                 .setStartTimestamps(System.currentTimeMillis())
@@ -46,7 +46,7 @@ public class RPC {
 
     public static void updatePresence(String details) {
         DiscordRichPresence rich = new DiscordRichPresence
-                .Builder("Playing Grimoire")
+                .Builder("Playing Turmoil")
                 .setDetails(details)
                 .setBigImage("runelite_splash", "")
                 .setStartTimestamps(System.currentTimeMillis())

@@ -64,7 +64,7 @@ tasks {
     register<JavaExec>("Run-Normal") {
         group = "Runelite"
         description = "Run Runelite in Normal Mode"
-        classpath = project.sourceSets.main.get().runtimeClasspath
+        classpath = sourceSets["main"].runtimeClasspath
         mainClass.set("Application")
     }
 
@@ -73,7 +73,7 @@ tasks {
         description = "Run Runelite in Development Mode"
         enableAssertions = true
         args = listOf("--developer-mode")
-        classpath = project.sourceSets.main.get().runtimeClasspath
+        classpath = sourceSets["main"].runtimeClasspath
         mainClass.set("Application")
     }
 

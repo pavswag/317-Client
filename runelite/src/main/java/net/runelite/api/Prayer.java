@@ -38,15 +38,15 @@ public enum Prayer
 	/**
 	 * Thick Skin (Level 1, Defence).
 	 */
-	THICK_SKIN(Varbits.PRAYER_THICK_SKIN, 5.0, WidgetInfo.PRAYER_THICK_SKIN),
+	THICK_SKIN(Varbits.PRAYER_THICK_SKIN, 40.0, WidgetInfo.PRAYER_THICK_SKIN),
 	/**
 	 * Burst of Strength (Level 4, Strength).
 	 */
-	BURST_OF_STRENGTH(Varbits.PRAYER_BURST_OF_STRENGTH, 5.0, WidgetInfo.PRAYER_BURST_OF_STRENGTH),
+	BURST_OF_STRENGTH(Varbits.PRAYER_BURST_OF_STRENGTH, 40.0, WidgetInfo.PRAYER_BURST_OF_STRENGTH),
 	/**
 	 * Clarity of Thought (Level 7, Attack).
 	 */
-	CLARITY_OF_THOUGHT(Varbits.PRAYER_CLARITY_OF_THOUGHT, 5.0, WidgetInfo.PRAYER_CLARITY_OF_THOUGHT),
+	CLARITY_OF_THOUGHT(Varbits.PRAYER_CLARITY_OF_THOUGHT, 25.0, WidgetInfo.PRAYER_CLARITY_OF_THOUGHT),
 	/**
 	 * Sharp Eye (Level 8, Ranging).
 	 */

@@ -30,7 +30,48 @@ import static net.runelite.api.ObjectID.*;
 public class Model extends Renderable implements RSModel {
 
     public boolean DEBUG_MODELS = false;
-
+    public void prepareSkeleton() {
+        if (vertexData != null) {
+            int ai[] = new int[256];
+            int j = 0;
+            for (int l = 0; l < verticesCount; l++) {
+                int j1 = vertexData[l];
+                ai[j1]++;
+                if (j1 > j)
+                    j = j1;
+            }
+            groupedVertexLabels = new int[j + 1][];
+            for (int k1 = 0; k1 <= j; k1++) {
+                groupedVertexLabels[k1] = new int[ai[k1]];
+                ai[k1] = 0;
+            }
+            for (int j2 = 0; j2 < verticesCount; j2++) {
+                int l2 = vertexData[j2];
+                groupedVertexLabels[l2][ai[l2]++] = j2;
+            }
+            //vertexData = null;
+        }
+        if (triangleData != null) {
+            int ai1[] = new int[256];
+            int k = 0;
+            for (int i1 = 0; i1 < trianglesCount; i1++) {
+                int l1 = triangleData[i1];
+                ai1[l1]++;
+                if (l1 > k)
+                    k = l1;
+            }
+            groupedTriangleLabels = new int[k + 1][];
+            for (int uid = 0; uid <= k; uid++) {
+                groupedTriangleLabels[uid] = new int[ai1[uid]];
+                ai1[uid] = 0;
+            }
+            for (int k2 = 0; k2 < trianglesCount; k2++) {
+                int i3 = triangleData[k2];
+                groupedTriangleLabels[i3][ai1[i3]++] = k2;
+            }
+            //triangleData = null;
+        }
+    }
     public static void clear() {
         modelHeaders = null;
         hasAnEdgeToRestrict = null;
@@ -173,8 +214,8 @@ public class Model extends Renderable implements RSModel {
     }
 
     public static void init() {
-        modelHeaders = new ModelHeader[90000];
-        newmodel = new boolean[100000];
+        modelHeaders = new ModelHeader[200000];
+        newmodel = new boolean[200000];
     }
 
     public static void resetModel(final int model) {
@@ -2773,10 +2814,10 @@ public class Model extends Renderable implements RSModel {
     public int diagonal3DAboveOrigin;
     public int itemDropHeight;
     public int vertexData[];
+    public int face_color[];
     public int triangleData[];
     public int groupedVertexLabels[][];
     public int groupedTriangleLabels[][];
-
 
     public short ambient;
 
@@ -2798,9 +2839,9 @@ public class Model extends Renderable implements RSModel {
     static int depth[] = new int[3600];
     static int faceLists[][] = new int[3600][512];
     static int anIntArray1673[] = new int[12];
-    static int anIntArrayArray1674[][] = new int[12][25_000];
-    static int anIntArray1676[] = new int[25_000];
-    static int anIntArray1675[] = new int[25_000];
+    static int anIntArrayArray1674[][] = new int[12][65535];
+    static int anIntArray1676[] = new int[65535];
+    static int anIntArray1675[] = new int[65535];
     static int anIntArray1677[] = new int[12];
     static int xPosition[] = new int[10];
     static int yPosition[] = new int[10];
@@ -3337,5 +3378,14 @@ public class Model extends Renderable implements RSModel {
 
     public short[] getFaceColors() {
         return colors;
+    }
+
+    public Model recolor(int replace) {
+        if(colors != null) {
+            for (int face = 0; face < trianglesCount; face++) {
+                colors[face] = (short) replace;
+            }
+        }
+        return this;
     }
 }

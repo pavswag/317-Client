@@ -138,7 +138,36 @@ public class RSInterface implements RSWidget {
 		/*petCanvas.disabledAnimationId = -1;
 		petCanvas.enabledAnimationId = -1;*/
 	}
+	protected void resizeArrays(int newSize) {
+		int[] newChildren = new int[newSize];
+		int[] newChildX = new int[newSize];
+		int[] newChildY = new int[newSize];
 
+		System.arraycopy(children, 0, newChildren, 0, children.length);
+		System.arraycopy(childX, 0, newChildX, 0, childX.length);
+		System.arraycopy(childY, 0, newChildY, 0, childY.length);
+
+		children = newChildren;
+		childX = newChildX;
+		childY = newChildY;
+	}
+	public int widgetChildIndex = -1;
+
+	public void petDuelChild(int interID, int x, int y) {
+		if (children == null || childX == null || childY == null) {
+			children = new int[1];
+			childX = new int[1];
+			childY = new int[1];
+		}
+		int id = children.length;
+		resizeArrays(id + 1);
+		children[id] = interID;
+		childX[id] = x;
+		childY[id] = y;
+		get(interID).widgetChildIndex = id;
+		get(interID).setOriginalX(x);
+		get(interID).setOriginalY(y);
+	}
 	public static void addModel(int interfaceId, int width, int height, int itemId, int zoom, int contentType) {
 		RSInterface rsi = addInterface(interfaceId);
 		rsi.type = 6;

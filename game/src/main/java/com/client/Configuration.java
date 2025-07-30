@@ -11,15 +11,32 @@ public class Configuration {
 	 * the player has the most up-to-date client, otherwise they
 	 * will receive an error on login to update their client.
 	 */
+
 	public static final int CLIENT_VERSION = 37;
 
 	/**
-	 * Cache version is written to the cache folder inside a version file.
+	 * Cache version is written t
+	 *
+	 * o the cache folder inside a version file.
 	 * This is read on startup to tell if the cache is out of date or not.
 	 */
-	public static final int CACHE_VERSION = 16; // Set this to the same value, v0.030 = 30, v1.120 = 1120 -- LIVE Server = 13
-	public static final String CACHE_LINK = "https://www.valorrsps.com/grimoire/.Grimoire.zip";
+	public static final int CACHE_VERSION = 23; // Set this to the same value, v0.030 = 30, v1.120 = 1120 -- LIVE Server = 13
+	public static final String CACHE_LINK = "https://www.turmoilrsps.quest/cache.zip";
+	/**
+	 * Enable cleaner login box drawing instead of the default sprite.
+	 */
+	public static boolean CLEAN_LOGIN_BOX = true;
 
+	/**
+	 * Use animated gif backgrounds on the login screen and loading screen.
+	 */
+	public static boolean USE_GIF_LOGIN_BACKGROUND = true;
+	public static boolean USE_GIF_LOADING_SCREEN = true;
+
+	/**
+	 * Base URL for loading gif backgrounds remotely.
+	 */
+	public static final String GIF_BASE_URL = "https://turmoilrsps.quest/background/";
 	/**
 	 * The server version. The cache path is append with a _v1/2/3 etc for the version number
 	 * to prevent overwriting older version caches.
@@ -28,21 +45,22 @@ public class Configuration {
 
 
 	public static boolean SAVE_ACCOUNTS = true;
-	public static final String CLIENT_TITLE = "Grimoire";
+	public static final String CLIENT_TITLE = "Turmoil";
 	public static final String WEBSITE = "";
-	public static final String DEDICATED_SERVER_ADDRESS = "localhost";
-	public static Connection CONNECTION = Connection.WORLD_1;
+	public static final String DEDICATED_SERVER_ADDRESS = "162.252.9.194";
+	public static Connection CONNECTION = Connection.DEVELOPMENT;
 	public static final int TEST_PORT = 43595;
-	public static final String CACHE_NAME = ".Grimoire";
+	public static final String CACHE_NAME = ".Turmoil";
 	public static final String DEV_CACHE_NAME = "local_cache";
 	public static final String CACHE_NAME_DEV = CACHE_NAME + "_dev";
 
 	public static final String CUSTOM_ITEM_SPRITES_DIRECTORY = "item_sprites/";
-	public static String CUSTOM_MAP_DIRECTORY = "./data/custom_maps/";
-	public static String CUSTOM_MODEL_DIRECTORY = "./data/custom_models/";
-	public static String CUSTOM_ANIMATION_DIRECTORY = "./data/custom_animations/";
+	public static String CUSTOM_MAP_DIRECTORY = "/data/custom_maps/";
+	public static String CUSTOM_MODEL_DIRECTORY = "C:/Users/pavsw/Desktop/Turmoil-Client-Arkane/data/model";
+	public static String CUSTOM_ANIMATION_DIRECTORY = "data/custom_animations/";
 
-	public static boolean developerMode = true;
+	public static boolean developerMode = false;
+	public static boolean PVP = true;
 	public static boolean packIndexData = false;
 	public static boolean dumpMaps;
 	public static boolean dumpAnimationData = false;

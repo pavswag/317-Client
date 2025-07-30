@@ -24,7 +24,9 @@ public class Settings implements Serializable {
 		settings.fog = false;
 		settings.smoothShading = false;
 		settings.tileBlending = false;
-		settings.inventoryContextMenu = false;
+		// Enable the inventory hover menu by default using the
+		// configured start menu color.
+		settings.inventoryContextMenu = true;
 		settings.startMenuColor = SettingsManager.DEFAULT_START_MENU_COLOR;
 		settings.chatColor = SettingsManager.DEFAULT_CHAT_COLOR_OPTION;
 		settings.bountyHunter = true;

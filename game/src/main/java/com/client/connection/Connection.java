@@ -2,10 +2,10 @@ package com.client.connection;
 
 public enum Connection {
     /** The economy (main) world. */
-    WORLD_1("Live", "192.41.102.184", "43594"),
+    WORLD_1("Live", "162.252.9.194", "43594"),
 
     /** The management world - used for private testing by the management team. */
-    WORLD_2("Beta", "192.248.211.249", "43594"),
+    PVP("LIVE", "162.252.9.194", "43594"),
 
     /** The development world - used by developers. */
     DEVELOPMENT("Local", "localhost", "43594")

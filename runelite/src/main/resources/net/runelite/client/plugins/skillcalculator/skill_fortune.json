@@ -8,7 +8,7 @@
     },       {
       "level": 1,
       "icon": 22316,
-      "name": "Grimoire Sword",
+      "name": "Turmoil Sword",
       "xp": 100
     },       {
       "level": 1,
@@ -148,7 +148,7 @@
     },       {
       "level": 1,
       "icon": 691,
-      "name": "10,000 Nomad Point Certificate",
+      "name": "10,000 Upgrade Points Certificate",
       "xp": 1000
     },       {
       "level": 1,
@@ -398,7 +398,7 @@
     },       {
       "level": 1,
       "icon": 692,
-      "name": "25,000 Nomad Point Certificate",
+      "name": "25,000 Upgrade Points Certificate",
       "xp": 1000
     },       {
       "level": 1,
@@ -628,7 +628,7 @@
     },       {
       "level": 1,
       "icon": 693,
-      "name": "50,000 Nomad Point Certificate",
+      "name": "50,000 Upgrade Points Certificate",
       "xp": 1000
     },       {
       "level": 1,
@@ -1168,7 +1168,7 @@
     },       {
       "level": 1,
       "icon": 696,
-      "name": "250,000 Nomad Point Certificate",
+      "name": "250,000 Upgrade Points Certificate",
       "xp": 25000
     },       {
       "level": 1,

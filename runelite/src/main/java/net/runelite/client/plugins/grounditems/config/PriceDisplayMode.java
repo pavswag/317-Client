@@ -32,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 public enum PriceDisplayMode
 {
 	HA("High Alchemy"),
-	GE("Nomad Points"),
+	GE("Upgrade Points"),
 	BOTH("Both"),
 	OFF("Off");
 

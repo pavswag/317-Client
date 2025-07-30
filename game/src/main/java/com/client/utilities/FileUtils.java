@@ -152,7 +152,7 @@ public final class FileUtils {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
             in = new GZIPInputStream(in);
-            byte[] buffer = new byte[65536];
+            byte[] buffer = new byte[99999];
             int noRead;
             while ((noRead = in.read(buffer)) != -1) {
                 out.write(buffer, 0, noRead);

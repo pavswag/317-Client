@@ -8,6 +8,7 @@ import net.runelite.api.IterableHashTable;
 import net.runelite.rs.api.RSItemComposition;
 import net.runelite.rs.api.RSIterableNodeHashTable;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public final class ItemDefinition implements RSItemComposition {
@@ -55,8 +56,8 @@ public final class ItemDefinition implements RSItemComposition {
     public boolean tradeable;
     public HashMap<Integer, Object> params;
     public int glowColor = -1;
-    private short[] textureReplace;
-    private short[] textureFind;
+    private int[] textureReplace;
+    private int[] textureFind;
     private byte femaleOffset;
     private int femaleModel2;
     private int maleHeadModel2;
@@ -74,6 +75,7 @@ public final class ItemDefinition implements RSItemComposition {
     private int bought_template_id;
     private int placeholder_id;
     private int placeholder_template_id;
+    public boolean animateInventory;
 
     private ItemDefinition() {
         id = -1;
@@ -113,6 +115,14 @@ public final class ItemDefinition implements RSItemComposition {
         ItemDefinition itemDef = new ItemDefinition();
         itemDef.setDefaults();
         switch (itemId) {
+            case 34000:
+                return copyColored(itemDef, 34_000, 1128, "Rune platebody (gold)",
+                        new int[] { 540, 541, 542 }, new int[] { 8128, 8129, 8130 }, "Wear");
+            case 34001:
+                return copyTextured(itemDef, 34_001, 1128, "Rune platebody (stone)",
+                        new int[] { 2 }, new int[] { 46 }, "Wear");
+            case 34_003:
+                return copyGhost(itemDef, 34_002, 10348, "Rune platebody (ghost)", "Wear");
             case 30000:
                 return copy(itemDef, 30_000, 11738, "Resource box(small)", "Open");
             case 30001:
@@ -127,7 +137,50 @@ public final class ItemDefinition implements RSItemComposition {
 
         return null;
     }
+    public static ItemDefinition copyColored(ItemDefinition itemDef, int newId, int copyingItemId, String newName,
+                                             int[] colorFind, int[] colorReplace, String... actions) {
+        copy(itemDef, newId, copyingItemId, newName, actions);
+        itemDef.colorFind = colorFind;
+        itemDef.colorReplace = colorReplace;
+        return itemDef;
+    }
 
+    public static ItemDefinition copyTextured(ItemDefinition itemDef, int newId, int copyingItemId, String newName,
+                                              int[] textureFind, int[] textureReplace, String... actions) {
+        copy(itemDef, newId, copyingItemId, newName, actions);
+
+        if (textureFind != null) {
+        //    itemDef.textureFind = new short[textureFind.length];
+            for (int i = 0; i < textureFind.length; i++) {
+              //  itemDef.textureFind[i] = (short) textureFind[i];
+            }
+        } else {
+            itemDef.textureFind = null;
+        }
+
+        if (textureReplace != null) {
+          //  itemDef.textureReplace = new short[textureReplace.length];
+            for (int i = 0; i < textureReplace.length; i++) {
+                itemDef.textureReplace[i] = (short) textureReplace[i];
+            }
+        } else {
+            itemDef.textureReplace = null;
+        }
+
+        return itemDef;
+    }
+
+    public static ItemDefinition copyGhost(ItemDefinition itemDef, int newId, int copyingItemId, String newName,
+                                           String... actions) {
+        ItemDefinition base = lookup(copyingItemId);
+        copy(itemDef, newId, copyingItemId, newName, actions);
+        if (base.colorFind != null) {
+            itemDef.colorFind = Arrays.copyOf(base.colorFind, base.colorFind.length);
+            itemDef.colorReplace = new int[itemDef.colorFind.length];
+            Arrays.fill(itemDef.colorReplace, 0);
+        }
+        return itemDef;
+    }
     public static ItemDefinition copy(ItemDefinition itemDef, int newId, int copyingItemId, String newName, String...actions) {
         ItemDefinition copyItemDef = lookup(copyingItemId);
         itemDef.id = newId;
@@ -189,6 +242,14 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.name = "Double harvest(10min)";
                 itemDef.stackable = true;
                 break;
+            case 28693:
+                itemDef.name = "Turmoil Unlock Scroll";
+                itemDef.stackable = true;
+                break;
+            case 28696:
+                itemDef.name = "SoulSplit Unlock Scroll";
+                itemDef.stackable = true;
+                break;
             case 6806:
                 itemDef.name = "Double harvest(30min)";
                 itemDef.stackable = true;
@@ -198,7 +259,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.stackable = false;
                 break;
             case 26551:
-                itemDef.name = "Grimoire's grimoire";
+                itemDef.name = "Turmoil's Grimoire";
                 itemDef.interfaceOptions = new String[] { null, "Wield", "Read", null, "Drop" };
                 break;
             case 8232:
@@ -244,7 +305,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.yOffset2d = -322;
                 break;
             case 13372:
-                itemDef.name = "Juan Gloves";
+                itemDef.name = "Turmoil Gloves";
                 break;
             case 24364:
                 itemDef.name = "Island Scroll (15min)";
@@ -386,7 +447,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.name = "Crystalline Key";
                 break;
             case 33237:
-                itemDef.name = "@yel@1 Nomad Point Certificate";
+                itemDef.name = "@yel@1 Upgrade Points Certificate";
                 itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
                 itemDef.modelId = 60039;
                 itemDef.zoom2d = ItemDefinition.lookup(691).zoom2d;
@@ -397,19 +458,19 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.yOffset2d = ItemDefinition.lookup(691).yOffset2d;
                 break;
             case 691:
-                itemDef.name = "@gre@10,000 Nomad Point Certificate";
+                itemDef.name = "@gre@10,000 Upgrade Points Certificate";
                 itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
                 break;
             case 692:
-                itemDef.name = "@red@25,000 Nomad Point Certificate";
+                itemDef.name = "@red@25,000 Upgrade Points Certificate";
                 itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
                 break;
             case 693:
-                itemDef.name = "@cya@50,000 Nomad Point Certificate";
+                itemDef.name = "@cya@50,000 Upgrade Points Certificate";
                 itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
                 break;
             case 696:
-                itemDef.name = "<col=f5c964>250,000 Nomad Point Certificate";
+                itemDef.name = "<col=f5c964>250,000 Upgrade Points Certificate";
                 itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
                 break;
             case 23877:
@@ -536,7 +597,7 @@ public final class ItemDefinition implements RSItemComposition {
 
                 break;
             case 6832:
-                itemDef.name = "@red@YT Stream Giveaway Box";
+                itemDef.name = "@red@Owner Giveaway Box";
                 //itemDef.description = "Spawns items to giveaway for your youtube stream.";
                 itemDef.interfaceOptions = new String[] { "Giveaway", null, null, null, "Drop" };
 
@@ -1097,8 +1158,8 @@ public final class ItemDefinition implements RSItemComposition {
                 //itemDef.description = "I can see some coins inside.";
                 break;
             case 22316:
-                itemDef.name = "Sword of Grimoire";
-                //itemDef.description = "The Sword of Grimoire.";
+                itemDef.name = "Sword of Turmoil";
+                //itemDef.description = "The Sword of Turmoil.";
                 break;
             case 30110:
                 itemDef.setDefaults();
@@ -1188,6 +1249,1661 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.stackable = false;
                 itemDef.createCustomSprite("dark_Corrupt_beast.png");
                 break;
+            case 30170: //
+                itemDef.setDefaults();
+                itemDef.id = 30170; //
+                itemDef.modelId = 61000; //
+                itemDef.maleModel0 = 61000; //
+                itemDef.femaleModel0 = 61000; //
+                itemDef.name = "MiniGun";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30172: //
+                itemDef.setDefaults();
+                itemDef.id = 30172; //
+                itemDef.modelId = 61002; //
+                itemDef.maleModel0 = 61002; //
+                itemDef.femaleModel0 = 61002; //
+                itemDef.name = "Darkness Platebody (G)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30174: //
+                itemDef.setDefaults();
+                itemDef.id = 30174; //
+                itemDef.modelId = 61004; //
+                itemDef.maleModel0 = 61004; //
+                itemDef.femaleModel0 = 61004; //
+                itemDef.name = "Darkness Helmet (G)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30176: //
+                itemDef.setDefaults();
+                itemDef.id = 30176; //
+                itemDef.modelId = 61006; //
+                itemDef.maleModel0 = 61006; //
+                itemDef.femaleModel0 = 61006; //
+                itemDef.name = "Darkness Platelegs (G)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30180: //
+                itemDef.setDefaults();
+                itemDef.id = 30180; //
+                itemDef.modelId = 61008; //
+                itemDef.maleModel0 = 61008; //
+                itemDef.femaleModel0 = 61008; //
+                itemDef.name = "Cursed Platelegs";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30182: //
+                itemDef.setDefaults();
+                itemDef.id = 30182; //
+                itemDef.modelId = 61010; //
+                itemDef.maleModel0 = 61010; //
+                itemDef.femaleModel0 = 61010; //
+                itemDef.name = "Cursed Platebody";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30184: //
+                itemDef.setDefaults();
+                itemDef.id = 30184; //
+                itemDef.modelId = 61012; //
+                itemDef.maleModel0 = 61012; //
+                itemDef.femaleModel0 = 61012; //
+                itemDef.name = "Cursed Helmet";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30186: //
+                itemDef.setDefaults();
+                itemDef.id = 30186; //
+                itemDef.modelId = 61014; //
+                itemDef.maleModel0 = 61014; //
+                itemDef.femaleModel0 = 61014; //
+                itemDef.name = "Cursed WingedCape";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30188: //
+                itemDef.setDefaults();
+                itemDef.id = 30188; //
+                itemDef.modelId = 27221; //
+                itemDef.maleModel0 = 27221; //
+                itemDef.femaleModel0 = 27221; //
+                itemDef.name = "Shiny Royal Crown";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30190: //
+                itemDef.setDefaults();
+                itemDef.id = 30190; //
+                itemDef.modelId = 53178; //
+                itemDef.maleModel0 = 53178; //
+                itemDef.femaleModel0 = 53178; //
+                itemDef.name = "Crystal Hat";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30192: //
+                itemDef.setDefaults();
+                itemDef.id = 30192; //
+                itemDef.modelId = 53180; //
+                itemDef.maleModel0 = 53180; //
+                itemDef.femaleModel0 = 53180; //
+                itemDef.name = "Crystal Robetop";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30194: //
+                itemDef.setDefaults();
+                itemDef.id = 30194; //
+                itemDef.modelId = 53182; //
+                itemDef.maleModel0 = 53182; //
+                itemDef.femaleModel0 = 53182; //
+                itemDef.name = "Crystal Robebottoms";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30196: //
+                itemDef.setDefaults();
+                itemDef.id = 30196; //
+                itemDef.modelId = 53205; //
+                itemDef.maleModel0 = 53205; //
+                itemDef.femaleModel0 = 53205; //
+                itemDef.name = "Crystal Boots";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30198: //
+                itemDef.setDefaults();
+                itemDef.id = 30198; //
+                itemDef.modelId = 61016; //
+                itemDef.maleModel0 = 61016; //
+                itemDef.femaleModel0 = 61016; //
+                itemDef.name = "The Great Battleaxe";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 33430:
+                itemDef.name = "Wraith Sword";
+                itemDef.maleModel0 = 60957;
+                itemDef.modelId = 33430; //
+                itemDef.modelId = 60957; //
+                itemDef.femaleModel0 = 60957;
+                itemDef.zoom2d = ItemDefinition.lookup(33202).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(33202).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(33202).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(33202).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(33202).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33431:
+                itemDef.name = "Wraith Scythe";
+                itemDef.maleModel0 = 60964;
+                itemDef.femaleModel0 = 60964;
+                itemDef.modelId = 60958;
+                itemDef.zoom2d = ItemDefinition.lookup(33203).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(33203).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(33203).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(33203).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(33203).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33432:
+                itemDef.name = "Wraith Spear";
+                itemDef.maleModel0 = 60960;
+                itemDef.femaleModel0 = 60960;
+                itemDef.modelId = 60959;
+                itemDef.zoom2d = ItemDefinition.lookup(33204).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(33204).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(33204).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(33204).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(33204).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33438:
+                itemDef.name = "Wraith Mask";
+                itemDef.maleModel0 = 60975;
+                itemDef.femaleModel0 = 60975;
+                itemDef.modelId = 60974;
+                itemDef.zoom2d = ItemDefinition.lookup(27235).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(27235).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(27235).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(27235).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(27235).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33439:
+                itemDef.name = "Wraith Body";
+                itemDef.maleModel0 = 60977;
+                itemDef.femaleModel0 = 60977;
+                itemDef.modelId = 60976;
+                itemDef.zoom2d = ItemDefinition.lookup(27238).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(27238).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(27238).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(27238).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(27238).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33440:
+                itemDef.name = "Wraith legs";
+                itemDef.maleModel0 = 60979;
+                itemDef.femaleModel0 = 60979;
+                itemDef.modelId = 60978;
+                itemDef.zoom2d = ItemDefinition.lookup(27241).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(27241).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(27241).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(27241).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(27241).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33442:
+                itemDef.name = "100% Thrills";
+                itemDef.maleModel0 = 60981;
+                itemDef.femaleModel0 = 60981;
+                itemDef.modelId = 60980;
+                itemDef.zoom2d = ItemDefinition.lookup(29796).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(29796).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(29796).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(29796).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(29796).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(29796).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33443:
+                itemDef.name = "Wraith Shield";
+                itemDef.maleModel0 = 60983;
+                itemDef.femaleModel0 = 60983;
+                itemDef.modelId = 60982;
+                itemDef.zoom2d = ItemDefinition.lookup(12817).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(12817).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(12817).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(12817).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(12817).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(12817).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33444:
+                itemDef.name = "Wraith Book";
+                itemDef.maleModel0 = 60985;
+                itemDef.femaleModel0 = 60985;
+                itemDef.modelId = 60984;
+                itemDef.zoom2d = ItemDefinition.lookup(26551).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(26551).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(26551).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(26551).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(26551).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(26551).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33445:
+                itemDef.name = "Wraith Defender";
+                itemDef.maleModel0 = 60987;
+                itemDef.femaleModel0 = 60987;
+                itemDef.modelId = 60986;
+                itemDef.zoom2d = ItemDefinition.lookup(27552).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(27552).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(27552).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(27552).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(27552).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(27552).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33397:
+                itemDef.name = "@pur@Pink Ankou Mask";
+                itemDef.modelId = 60905;
+                itemDef.maleModel0 = 60900;
+                itemDef.femaleModel0 = 60900;
+                itemDef.zoom2d = ItemDefinition.lookup(20095).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20095).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20095).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20095).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20095).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33398:
+                itemDef.name = "@pur@Pink Ankou Top";
+                itemDef.modelId = 60906;
+                itemDef.maleModel0 = 60901;
+                itemDef.maleModel1 = 60910;
+                itemDef.femaleModel0 = 60901;
+                itemDef.femaleModel1 = 60910;
+                itemDef.zoom2d = ItemDefinition.lookup(20098).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20098).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20098).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20098).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20098).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33399:
+                itemDef.name = "@pur@Pink Ankou Legs";
+                itemDef.modelId = 60907;
+                itemDef.maleModel0 = 60902;
+                itemDef.femaleModel0 = 60902;
+                itemDef.zoom2d = ItemDefinition.lookup(20104).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20104).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20104).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20104).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20104).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+
+            case 11505:
+                itemDef.name = "Potion of ambition";
+                break;
+            case 33392:
+                itemDef.name = "Freedom Ring";
+                itemDef.modelId = 60891;
+                itemDef.maleModel0 = 60891;
+                itemDef.femaleModel0 = 60891;
+                itemDef.zoom2d = ItemDefinition.lookup(28327).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(28327).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(28327).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(28327).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(28327).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 24725:
+                itemDef.name = "Hallowed Amulet";
+                break;
+            case 9068:
+                itemDef.name = "Helm of amazement";
+                break;
+            case 29489:
+                itemDef.name = "Prophets Pride";
+                break;
+            case 28416:
+                itemDef.name = "Shadow Crusade Key";
+                break;
+            case 33394:
+                itemDef.name = "Freedom Gloves";
+                itemDef.modelId = 60969;
+                itemDef.maleModel0 = 60896;
+                itemDef.femaleModel0 = 60897;
+                itemDef.zoom2d = ItemDefinition.lookup(2912).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(2912).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(2912).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(2912).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(2912).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 28796:
+                itemDef.name = "Staff of amazement";
+                break;
+            case 33393:
+                itemDef.name = "Freedom Boots";
+                itemDef.modelId = 60970;
+                itemDef.maleModel0 = 60893;
+                itemDef.femaleModel0 = 60894;
+                itemDef.zoom2d = ItemDefinition.lookup(2904).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(2904).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(2904).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(2904).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(2904).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33400:
+                itemDef.name = "@pur@Pink Ankou Socks";
+                itemDef.modelId = 60908;
+                itemDef.maleModel0 = 60903;
+                itemDef.femaleModel0 = 60903;
+                itemDef.zoom2d = ItemDefinition.lookup(20107).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20107).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20107).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20107).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20107).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33401:
+                itemDef.name = "@pur@Pink Ankou Mask";
+                itemDef.modelId = 60909;
+                itemDef.maleModel0 = 60904;
+                itemDef.femaleModel0 = 60904;
+                itemDef.zoom2d = ItemDefinition.lookup(20101).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20101).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20101).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20101).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20101).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33402:
+                itemDef.setDefaults();
+                itemDef.name = "Hallowed Gloves";
+                itemDef.modelId = 60913;
+                itemDef.maleModel0 = 60911;
+                itemDef.femaleModel0 = 60911;
+                itemDef.zoom2d = ItemDefinition.lookup(22981).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(22981).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(22981).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(22981).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(22981).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33403:
+                itemDef.name = "Hallowed Boots";
+                itemDef.modelId = 60912;
+                itemDef.maleModel0 = 60912;
+                itemDef.femaleModel0 = 60912;
+                itemDef.zoom2d = ItemDefinition.lookup(13235).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(13235).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(13235).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(13235).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(13235).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33404:
+                itemDef.name = "Send Nudes";
+                itemDef.modelId = 60915;
+                itemDef.maleModel0 = 60914;
+                itemDef.femaleModel0 = 60914;
+                itemDef.zoom2d = 4180;
+                itemDef.xan2d = 235;
+                itemDef.yan2d = 43;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = 1;
+                itemDef.yOffset2d = -71;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33446:
+                itemDef.name = "ale of the scotty";
+                itemDef.maleModel0 = 60989;
+                itemDef.femaleModel0 = 60990;
+                itemDef.modelId = 60988;
+                itemDef.zoom2d = ItemDefinition.lookup(20056).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20056).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20056).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(20056).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20056).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20056).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33447:
+                itemDef.name = "Xamphur's Lure";
+                itemDef.maleModel0 = ItemDefinition.lookup(9627).maleModel0;
+                itemDef.femaleModel0 = ItemDefinition.lookup(9627).femaleModel0;
+                itemDef.modelId = ItemDefinition.lookup(9627).id;
+                itemDef.zoom2d = ItemDefinition.lookup(9627).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(9627).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(9627).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(9627).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(9627).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(9627).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
+                break;
+            case 26879:
+                itemDef.name = "Wraith Essence";
+                itemDef.modelId = 60991;
+                itemDef.zoom2d = ItemDefinition.lookup(26879).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(26879).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(26879).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(26879).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(26879).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(26879).yOffset2d;
+                itemDef.interfaceOptions = new String[] { "Inspect", null, null, null, "Drop" };
+                break;
+            case 33448:
+                itemDef.name = "Skilling Essence";
+                itemDef.modelId = 60991;
+                itemDef.zoom2d = ItemDefinition.lookup(26879).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(26879).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(26879).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(26879).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(26879).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(26879).yOffset2d;
+                itemDef.interfaceOptions = new String[] { "Consume", null, null, null, "Drop" };
+                itemDef.animateInventory = true;
+                break;
+            case 33449:
+                itemDef.name = "Minotaur Cape";
+                itemDef.maleModel0 = 60998;
+                itemDef.femaleModel0 = 60998;
+                itemDef.modelId = 60997;
+                itemDef.zoom2d = ItemDefinition.lookup(24855).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(24855).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(24855).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(24855).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(24855).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(24855).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.animateInventory = true;
+                break;
+            case 33450:
+                itemDef.name = "Minotaur Boots";
+                itemDef.maleModel0 = 61000;
+                itemDef.femaleModel0 = 61000;
+                itemDef.modelId = 60999;
+                itemDef.zoom2d = ItemDefinition.lookup(28945).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(28945).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(28945).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(28945).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(28945).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(28945).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.animateInventory = true;
+                break;
+            case 33451:
+                itemDef.name = "Minotaur Gloves";
+                itemDef.maleModel0 = 60996;
+                itemDef.femaleModel0 = 60996;
+                itemDef.modelId = 60995;
+                itemDef.zoom2d = ItemDefinition.lookup(7462).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(7462).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(7462).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(7462).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(7462).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(7462).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.animateInventory = true;
+                break;
+            case 33452:
+                itemDef.name = "Minotaur Ring";
+                itemDef.maleModel0 = 60994;
+                itemDef.femaleModel0 = 60994;
+                itemDef.modelId = 60994;
+                itemDef.zoom2d = ItemDefinition.lookup(26770).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(26770).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(26770).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(26770).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(26770).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(26770).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.animateInventory = true;
+                break;
+            case 33453:
+                itemDef.name = "Minotaur Amulet";
+                itemDef.maleModel0 = 60993;
+                itemDef.femaleModel0 = 60993;
+                itemDef.modelId = 60992;
+                itemDef.zoom2d = ItemDefinition.lookup(13136).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(13136).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(13136).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(13136).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(13136).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(13136).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.animateInventory = true;
+                break;
+            case 33433:
+                itemDef.name = "Wraith Staff";
+                itemDef.maleModel0 = 60962;
+                itemDef.femaleModel0 = 60962;
+                itemDef.modelId = 60961;
+                itemDef.zoom2d = ItemDefinition.lookup(33205).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(33205).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(33205).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(33205).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(33205).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33434:
+                itemDef.name = "Wraith Bow";
+                itemDef.maleModel0 = 60963;
+                itemDef.femaleModel0 = 60963;
+                itemDef.modelId = 60967;
+                itemDef.zoom2d = ItemDefinition.lookup(33207).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(33207).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(33207).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(33207).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(33207).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 33435:
+                itemDef.name = "Wraith Crossbow";
+                itemDef.maleModel0 = 60966;
+                itemDef.femaleModel0 = 60966;
+                itemDef.modelId = 60965;
+                itemDef.zoom2d = ItemDefinition.lookup(26269).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(26269).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(26269).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(26269).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(26269).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30200: //
+                itemDef.setDefaults();
+                itemDef.id = 30200; //
+                itemDef.modelId = 61018; //
+                itemDef.maleModel0 = 61018; //
+                itemDef.femaleModel0 = 61018; //
+                itemDef.name = "Darkness Helmet (Iced)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30202: //
+                itemDef.setDefaults();
+                itemDef.id = 30202; //
+                itemDef.modelId = 61020; //
+                itemDef.maleModel0 = 61020; //
+                itemDef.femaleModel0 = 61020; //
+                itemDef.name = "Darkness Platebody (Iced)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30204: //
+                itemDef.setDefaults();
+                itemDef.id = 30204; //
+                itemDef.modelId = 61022; //
+                itemDef.maleModel0 = 61022; //
+                itemDef.femaleModel0 = 61022; //
+                itemDef.name = "Darkness Platelegs (Iced)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 33406:
+                itemDef.name = "Heredit Ring";
+                itemDef.modelId = 60917;
+                itemDef.maleModel0 = 60917;
+                itemDef.femaleModel0 = 60917;
+                itemDef.zoom2d = ItemDefinition.lookup(12601).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(12601).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(12601).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(12601).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(12601).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33407:
+                itemDef.name = "Heredit Amulet";
+                itemDef.modelId = 60919;
+                itemDef.maleModel0 = 60920;
+                itemDef.femaleModel0 = 60920;
+                itemDef.zoom2d = ItemDefinition.lookup(19553).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(19553).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(19553).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(19553).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(19553).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33408:
+                itemDef.name = "Heredit Boots";
+                itemDef.modelId = 60918;
+                itemDef.maleModel0 = 60918;
+                itemDef.femaleModel0 = 60918;
+                itemDef.zoom2d = ItemDefinition.lookup(22954).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(22954).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(22954).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(22954).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(22954).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33409:
+                itemDef.name = "Heredit Gloves";
+                itemDef.modelId = 60921;
+                itemDef.maleModel0 = 60922;
+                itemDef.femaleModel0 = 60922;
+                itemDef.zoom2d = ItemDefinition.lookup(22981).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(22981).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(22981).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(22981).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(22981).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33410:
+                itemDef.name = "Heredit Cape";
+                itemDef.modelId = 60924;
+                itemDef.maleModel0 = 60925;
+                itemDef.femaleModel0 = 60925;
+                itemDef.zoom2d = ItemDefinition.lookup(27447).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(27447).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(27447).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(27447).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(27447).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33411:
+                itemDef.name = "Heredit Quiver";
+                itemDef.modelId = 60923;
+                itemDef.zoom2d = ItemDefinition.lookup(5562).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(5562).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(5562).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(5562).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(5562).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33412:
+                itemDef.name = "Orange Party Hat";
+                itemDef.modelId = 60926;
+                itemDef.maleModel0 = 60927;
+                itemDef.femaleModel0 = 60927;
+                itemDef.zoom2d = ItemDefinition.lookup(3128).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(3128).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(3128).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(3128).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(3128).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33413:
+                itemDef.name = "Element Hood";
+                itemDef.modelId = 60928;
+                itemDef.maleModel0 = 60929;
+                itemDef.femaleModel0 = 60929;
+                itemDef.zoom2d = ItemDefinition.lookup(20708).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20708).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20708).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20708).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20708).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33414:
+                itemDef.name = "Element Top";
+                itemDef.modelId = 60930;
+                itemDef.maleModel0 = 60931;
+                itemDef.femaleModel0 = 60931;
+                itemDef.zoom2d = ItemDefinition.lookup(20704).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20704).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20704).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20704).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20704).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33415:
+                itemDef.name = "Element Bottoms";
+                itemDef.modelId = 60932;
+                itemDef.maleModel0 = 60933;
+                itemDef.femaleModel0 = 60933;
+                itemDef.zoom2d = ItemDefinition.lookup(20706).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20706).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20706).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20706).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20706).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 33416:
+                itemDef.name = "Element Boots";
+                itemDef.modelId = 60934;
+                itemDef.maleModel0 = 60934;
+                itemDef.femaleModel0 = 60934;
+                itemDef.zoom2d = ItemDefinition.lookup(20710).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(20710).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(20710).yan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(20710).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(20710).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                break;
+            case 30206: //
+                itemDef.setDefaults();
+                itemDef.id = 30206; //
+                itemDef.modelId = 61024; //
+                itemDef.maleModel0 = 61024; //
+                itemDef.femaleModel0 = 61024; //
+                itemDef.name = "Iced MiniGun";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30208: //
+                itemDef.setDefaults();
+                itemDef.id = 30208; //
+                itemDef.modelId = 61026; //
+                itemDef.maleModel0 = 61026; //
+                itemDef.femaleModel0 = 61026; //
+                itemDef.name = "Master Katana";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30210: //
+                itemDef.setDefaults();
+                itemDef.id = 30210; //
+                itemDef.modelId = 61028; //
+                itemDef.maleModel0 = 61028; //
+                itemDef.femaleModel0 = 61028; //
+                itemDef.name = "Demon Helmet";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30212: //
+                itemDef.setDefaults();
+                itemDef.id = 30212; //
+                itemDef.modelId = 61030; //
+                itemDef.maleModel0 = 61030; //
+                itemDef.femaleModel0 = 61030; //
+                itemDef.name = "Demon Platebody";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30214: //
+                itemDef.setDefaults();
+                itemDef.id = 30214; //
+                itemDef.modelId = 61032; //
+                itemDef.maleModel0 = 61032; //
+                itemDef.femaleModel0 = 61032; //
+                itemDef.name = "Demon Platelegs";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30216: //
+                itemDef.setDefaults();
+                itemDef.id = 30216; //
+                itemDef.modelId = 61034; //
+                itemDef.maleModel0 = 61034; //
+                itemDef.femaleModel0 = 61034; //
+                itemDef.name = "Demon Gloves";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30218: //
+                itemDef.setDefaults();
+                itemDef.id = 30218; //
+                itemDef.modelId = 61036; //
+                itemDef.maleModel0 = 61036; //
+                itemDef.femaleModel0 = 61036; //
+                itemDef.name = "Darkness Helmet (Corrupted)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30220: //
+                itemDef.setDefaults();
+                itemDef.id = 30220; //
+                itemDef.modelId = 61038; //
+                itemDef.maleModel0 = 61038; //
+                itemDef.femaleModel0 = 61038; //
+                itemDef.name = "Darkness Platebody (Corrupted)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30222: //
+                itemDef.setDefaults();
+                itemDef.id = 30222; //
+                itemDef.modelId = 61040; //
+                itemDef.maleModel0 = 61040; //
+                itemDef.femaleModel0 = 61040; //
+                itemDef.name = "Darkness Platelegs (Corrupted)";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30224: //
+                itemDef.setDefaults();
+                itemDef.id = 30224; //
+                itemDef.modelId = 61042; //
+                itemDef.maleModel0 = 61042; //
+                itemDef.femaleModel0 = 61042; //
+                itemDef.name = "Crystal Katana";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30226: //
+                itemDef.setDefaults();
+                itemDef.id = 30226; //
+                itemDef.modelId = 61044; //
+                itemDef.maleModel0 = 61044; //
+                itemDef.femaleModel0 = 61044; //
+                itemDef.name = "Crystal Dagger";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30228: //
+                itemDef.setDefaults();
+                itemDef.id = 30228; //
+                itemDef.modelId = 61046; //
+                itemDef.maleModel0 = 61046; //
+                itemDef.femaleModel0 = 61046; //
+                itemDef.name = "Crystal Longbow";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30230: //
+                itemDef.setDefaults();
+                itemDef.id = 30230; //
+                itemDef.modelId = 61048; //
+                itemDef.maleModel0 = 61048; //
+                itemDef.femaleModel0 = 61048; //
+                itemDef.name = "DragonSlayer Cape";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30232: //
+                itemDef.setDefaults();
+                itemDef.id = 30232; //
+                itemDef.modelId = 61050; //
+                itemDef.maleModel0 = 61050; //
+                itemDef.femaleModel0 = 61050; //
+                itemDef.name = "LightBearer Mask";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30234: //
+                itemDef.setDefaults();
+                itemDef.id = 30234; //
+                itemDef.modelId = 61052; //
+                itemDef.maleModel0 = 61052; //
+                itemDef.femaleModel0 = 61052; //
+                itemDef.name = "LightBearer plated bottoms";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30236: //
+                itemDef.setDefaults();
+                itemDef.id = 30236; //
+                itemDef.modelId = 61054; //
+                itemDef.maleModel0 = 61054; //
+                itemDef.femaleModel0 = 61054; //
+                itemDef.name = "LightBearer Plated Robetop";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30238: //
+                itemDef.setDefaults();
+                itemDef.id = 30238; //
+                itemDef.modelId = 61056; //
+                itemDef.maleModel0 = 61056; //
+                itemDef.femaleModel0 = 61056; //
+                itemDef.name = "The Sword of Light";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30240: //
+                itemDef.setDefaults();
+                itemDef.id = 30240; //
+                itemDef.modelId = 61058; //
+                itemDef.maleModel0 = 61058; //
+                itemDef.femaleModel0 = 61058; //
+                itemDef.name = "Cryo Shadow Chestplate";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30242: //
+                itemDef.setDefaults();
+                itemDef.id = 30242; //
+                itemDef.modelId = 61060; //
+                itemDef.maleModel0 = 61060; //
+                itemDef.femaleModel0 = 61060; //
+                itemDef.name = "Cryo Shadow RangerHelm";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30244: //
+                itemDef.setDefaults();
+                itemDef.id = 30244; //
+                itemDef.modelId = 61062; //
+                itemDef.maleModel0 = 61062; //
+                itemDef.femaleModel0 = 61062; //
+                itemDef.name = "Cryo Shadow Chaps";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30246: //
+                itemDef.setDefaults();
+                itemDef.id = 30246; //
+                itemDef.modelId = 61064; //
+                itemDef.maleModel0 = 61064; //
+                itemDef.femaleModel0 = 61064; //
+                itemDef.name = "Thor's Hammer";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30250: //
+                itemDef.setDefaults();
+                int model = 15002;
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.name = "Fox's Helm";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30252: //
+                itemDef.setDefaults();
+                model = 15004;
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.name = "Fox's Chest";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30254: //
+                itemDef.setDefaults();
+                model = 15005;
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.name = "Fox's Legs";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30256: //
+                itemDef.setDefaults();
+                model = 15011;
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.name = "Ak47";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30258: //
+                itemDef.setDefaults();
+                model = 15098;
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.name = "Colossal Blade";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30260: //
+                itemDef.setDefaults();
+                model = 15351;
+                itemDef.name = "Dual Reapers";
+                itemDef.modelId = 15352; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30262: //
+                itemDef.setDefaults();
+                model = 19550;
+                itemDef.name = "Giant Shuriken";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model;
+                itemDef.femaleModel0 = model;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30264: //
+                itemDef.setDefaults();
+                model = 19550;
+                itemDef.name = "Giant Shuriken";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30266: //
+                itemDef.setDefaults();
+                model = 36604;
+                itemDef.name = "Bear Glaives";
+                itemDef.modelId = 36603; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30268: //
+                itemDef.setDefaults();
+                model = 36601;
+                itemDef.name = "Toxic Dragonfire Blowpipe";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", "Check", "Unload", "Uncharge" };
+                break;
+            case 28688: //
+                itemDef.setDefaults();
+                model = 36601;
+                itemDef.name = "Toxic Dragonfire Blowpipe";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.zoom2d = 1480;
+                itemDef.xan2d = 374;
+                itemDef.yan2d = 235;
+                itemDef.zan2d = 130;
+                itemDef.xOffset2d = 28;
+                itemDef.yOffset2d = -138;
+                itemDef.interfaceOptions = new String[] { null, "Wield", "Check", "Unload", "Uncharge" };
+                break;
+            case 30272: //
+                itemDef.setDefaults();
+                model = 48364;
+                itemDef.name = "Sword of Mages";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30274: //
+                itemDef.setDefaults();
+                model = 48395;
+                itemDef.name = "Enraged Beast Shield";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30276: //
+                itemDef.setDefaults();
+                model = 48465;
+                itemDef.name = "Handcannon";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30278: //
+                itemDef.setDefaults();
+                model = 48465;
+                itemDef.name = "Handcannon";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30280: //
+                itemDef.setDefaults();
+                model = 50223;
+                itemDef.name = "Demonic Sword";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30282: //
+                itemDef.setDefaults();
+                model = 5225;
+                itemDef.name = "Shark Fists";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30284: //
+                itemDef.setDefaults();
+                model = 53063;
+                itemDef.name = "Dark Vorkath Helm";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30286: //
+                itemDef.setDefaults();
+                model = 53065;
+                itemDef.name = "Dark Vorkath Chest";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30288: //
+                itemDef.setDefaults();
+                model = 53067;
+                itemDef.name = "Dark Vorkath Legs";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30290: //
+                itemDef.setDefaults();
+                model = 53070;
+                itemDef.name = "Dark Vorkath Boots";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30312: //
+                itemDef.setDefaults();
+                model = 53088;
+                itemDef.name = "Stealth Helm";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30292: //
+                itemDef.setDefaults();
+                model = 53090;
+                itemDef.name = "Stealth Body";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 11489:
+                itemDef.name = "AIO Overload Potion";
+            //itemDef.description = "A Magical Overload Potion.";
+            itemDef.interfaceOptions = new String[] { "Consume", null, null, null, null };
+            break;
+            case 30296: //
+                itemDef.setDefaults();
+                model = 53092;
+                itemDef.name = "Stealth Legs";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 84: //
+                itemDef.setDefaults();
+                model = 53096;
+                itemDef.name = "Staff of Frostmournes";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30300: //
+                itemDef.setDefaults();
+                model = 53129;
+                itemDef.name = "Solak's Hand";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30302: //
+                itemDef.setDefaults();
+                model = 58002;
+                itemDef.name = "Scythe of Vitur (Glowing)";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30304: //
+                itemDef.setDefaults();
+                model = 59888;
+                itemDef.name = "Master Scythe";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30306: //
+                itemDef.setDefaults();
+                model = 62774;
+                itemDef.name = "Heredit Shield";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 28534: //
+                itemDef.setDefaults();
+                model = 62936;
+                itemDef.name = "Mech Claws";
+                itemDef.modelId = 62937; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30310: //
+                itemDef.setDefaults();
+                model = 62774;
+                itemDef.name = "Heredit Shield";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30314: //
+                itemDef.setDefaults();
+                model = 60400;
+                itemDef.name = "Bong";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30316: //
+                itemDef.setDefaults();
+                model = 60401;
+                itemDef.name = "Stealth Judgement Legs";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30318: //
+                itemDef.setDefaults();
+                model = 60402;
+                itemDef.name = "Stealth Judgement Mask";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30320: //
+                itemDef.setDefaults();
+                model = 60403;
+                itemDef.name = "Stealth Judgement Chest";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30322: //
+                itemDef.setDefaults();
+                model = 60404;
+                itemDef.name = "Auto-Assasin Helm";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30324: //
+                itemDef.setDefaults();
+                model = 60405;
+                itemDef.name = "Auto-Assasin Chest";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30326: //
+                itemDef.setDefaults();
+                model = 60406;
+                itemDef.name = "Auto-Assasin Legs";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30328: //
+                itemDef.setDefaults();
+                model = 60407;
+                itemDef.name = "Shadow P-hat";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30330: //
+                itemDef.setDefaults();
+                model = 60408;
+                itemDef.name = "Arrav Mask";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30332: //
+                itemDef.setDefaults();
+                model = 60409;
+                itemDef.name = "Arrav Chest";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30334: //
+                itemDef.setDefaults();
+                model = 60410;
+                itemDef.name = "Arrav Legs";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30336: //
+                itemDef.setDefaults();
+                model = 60411;
+                itemDef.name = "Arrav Spear";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30338: //
+                itemDef.setDefaults();
+                model = 60412;
+                itemDef.name = "Arrav's Light";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30340: //
+                itemDef.setDefaults();
+                model = 60413;
+                itemDef.name = "Arrav's Bow";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30342: //
+                itemDef.setDefaults();
+                model = 60414;
+                itemDef.name = "Corrupted Guthix's Mask";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30344: //
+                itemDef.setDefaults();
+                model = 60415;
+                itemDef.name = "Corrupted Guthix's Body";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30346: //
+                itemDef.setDefaults();
+                model = 60416;
+                itemDef.name = "Corrupted Guthix's Legs";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30348: //
+                itemDef.setDefaults();
+                model = 60417;
+                itemDef.name = "Corrupted Guthix's Staff";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30350: // 60418 mod marks sword
+                itemDef.setDefaults();
+                itemDef.name = "Martial God's Sword";
+                itemDef.maleModel0 = 60981;
+                itemDef.femaleModel0 = 60981;
+                itemDef.modelId = 60980;
+                itemDef.zoom2d = ItemDefinition.lookup(29796).zoom2d;
+                itemDef.xan2d = ItemDefinition.lookup(29796).xan2d;
+                itemDef.yan2d = ItemDefinition.lookup(29796).yan2d;
+                itemDef.zan2d = ItemDefinition.lookup(29796).zan2d;
+                itemDef.xOffset2d = ItemDefinition.lookup(29796).xOffset2d;
+                itemDef.yOffset2d = ItemDefinition.lookup(29796).yOffset2d;
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30352: //
+                itemDef.setDefaults();
+                model = 60419;
+                itemDef.name = "Dragon-Tipped Spear";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30354: //
+                itemDef.setDefaults();
+                model = 60420;
+                itemDef.name = "Dark Vorkath Bow";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30356: //cape
+                itemDef.setDefaults();
+                model = 60421;
+                itemDef.name = "Pet Dragon";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30358: //mask
+                itemDef.setDefaults();
+                model = 10031;
+                itemDef.name = "Bag";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30370: //
+                itemDef.setDefaults();
+                model = 12316;
+                itemDef.name = "Bow of Dragon Slaying";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
+            case 30362: //
+                itemDef.setDefaults();
+                model = 13544;
+                itemDef.name = "Zamorak's Blades";
+                itemDef.modelId = model; //
+                itemDef.maleModel0 = model; //
+                itemDef.femaleModel0 = model; //
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                break;
             case 30121:
                 itemDef.setDefaults();
                 itemDef.name = "Dark roc";
@@ -1195,6 +2911,169 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
                 itemDef.stackable = false;
                 itemDef.createCustomSprite("dark_Roc.png");
+                break;
+            case 30152:
+                itemDef.setDefaults();
+                itemDef.id = 30152;
+                itemDef.modelId = 57273;
+                itemDef.maleModel0 = 57273;
+                itemDef.femaleModel0 = 57273;
+                itemDef.name = "@blu@Twisted Magma Bow";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30205:
+                itemDef.setDefaults();
+                itemDef.id = 30205;
+                itemDef.modelId = 57273;
+                itemDef.maleModel0 = 57273;
+                itemDef.femaleModel0 = 57273;
+                itemDef.name = "@red@Infernal Magma Bow";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1748;
+                itemDef.xan2d = 983;
+                itemDef.yan2d = 496;
+                itemDef.zan2d = 26;
+                itemDef.xOffset2d = 0;
+                itemDef.yOffset2d = 12;
+                itemDef.textureFind = new int[] { 59,59,59 };
+                itemDef.textureReplace  = new int[] {40,40,40};
+                break;
+            case 30203:
+                itemDef.setDefaults();
+                itemDef.id = 30203;
+                itemDef.modelId = 57273;
+                itemDef.maleModel0 = 57273;
+                itemDef.femaleModel0 = 57273;
+                itemDef.name = "@red@God Magma Bow";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1748;
+                itemDef.xan2d = 983;
+                itemDef.yan2d = 496;
+                itemDef.zan2d = 26;
+                itemDef.xOffset2d = 0;
+                itemDef.yOffset2d = 12;
+                itemDef.textureFind = new int[] { 138,138,138 };
+                itemDef.textureReplace  = new int[] {40,40,40};
+                itemDef.colorFind = new int[] { 32700, 32700, 32700 };
+                itemDef.colorReplace = new int[] { 166, 152, 93 };
+                break;
+            case 30150:
+                itemDef.setDefaults();
+                itemDef.id = 30150;
+                itemDef.modelId = 14516;
+                itemDef.maleModel0 = 14516;
+                itemDef.femaleModel0 = 14516;
+                itemDef.name = "@blu@Chaotic Claws";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30156:
+                itemDef.setDefaults();
+                itemDef.id = 30156;
+                itemDef.modelId = 57270;
+                itemDef.maleModel0 = 57270;
+                itemDef.femaleModel0 = 57270;
+                itemDef.name = "@blu@MVP Sword";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30158:
+                itemDef.setDefaults();
+                itemDef.id = 30158;
+                itemDef.modelId = 56003;
+                itemDef.maleModel0 = 56003;
+                itemDef.femaleModel0 = 56003;
+                itemDef.name = "@blu@Ghostly Torva Full Helm";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30160:
+                itemDef.setDefaults();
+                itemDef.id = 30160;
+                itemDef.modelId = 56002;
+                itemDef.maleModel0 = 56002;
+                itemDef.femaleModel0 = 56002;
+                itemDef.name = "@blu@Ghostly Torva platelegs";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30162:
+                itemDef.setDefaults();
+                itemDef.id = 30162;
+                itemDef.modelId = 46001;
+                itemDef.maleModel0 = 46001;
+                itemDef.femaleModel0 = 46001;
+                itemDef.name = "@blu@Ghostly Torva platebody";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30154:
+                itemDef.setDefaults();
+                itemDef.id = 30154;
+                itemDef.modelId = 58001;
+                itemDef.maleModel0 = 58000;
+                itemDef.femaleModel0 = 58000;
+                itemDef.name = "@blu@Shadowhunter Brutal Whip";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30164:
+                itemDef.setDefaults();
+                itemDef.id = 30164;
+                itemDef.modelId = 58882;
+                itemDef.maleModel0 = 58882;
+                itemDef.femaleModel0 = 58882;
+                itemDef.name = "@blu@Glowing MVP Staff";
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.zoom2d = 1765;
+                itemDef.xan2d = 148;
+                itemDef.yan2d = 2026;
+                itemDef.zan2d = 0;
+                itemDef.xOffset2d = -2;
+                itemDef.yOffset2d = 78;
+                break;
+            case 30166:
+                itemDef.setDefaults();
+                copy(itemDef, 30166, 12596, "Infernal Tunic", "Wield");
+                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
+                itemDef.textureFind = new int[] { 15252,16161,17294 };
+                itemDef.textureReplace  = new int[] {40,40,40};
                 break;
             case 30122:
                 itemDef.setDefaults();
@@ -2364,7 +4243,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.name = "Nomad Master";
 
                 itemDef.modelId = ItemDefinition.lookup(26546).modelId;
-                //itemDef.description = "Chance to double Nomad Points when burning.";
+                //itemDef.description = "Chance to double Upgrade Points when burning.";
                 itemDef.interfaceOptions = new String[] { "Attune", null, null, null, "Destroy" };
                 itemDef.stackable = false;
                 itemDef.createCustomSprite("Imcando's_Apprentice.png");
@@ -3298,6 +5177,9 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
 
 
+            case 26886:
+                itemDef.name = "Upgrader Cell";
+                break;
             case 33162:
                 itemDef.setDefaults();
                 itemDef.id = 33159;
@@ -3315,10 +5197,10 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.femaleModel0 = 60023;
                 break;
 
-            /*case 33163:
+            case 33163:
                 itemDef.setDefaults();
                 itemDef.id = 33163;
-                itemDef.modelId = 49981;
+                itemDef.modelId = 53096;
                 itemDef.name = "AOE Tier (1) Bow";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 2757;
@@ -3408,7 +5290,7 @@ public final class ItemDefinition implements RSItemComposition {
             case 33169:
                 itemDef.setDefaults();
                 itemDef.id = 33169;
-                itemDef.modelId = 49900;
+                itemDef.modelId = 53096;
                 itemDef.name = "AOE Tier (1) Staff";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1887;
@@ -3417,13 +5299,13 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.zan2d = 0;
                 itemDef.xOffset2d = -26;
                 itemDef.yOffset2d = -61;
-                itemDef.maleModel0 = 49901;
-                itemDef.femaleModel0 = 49901;
+                itemDef.maleModel0 = 53096;
+                itemDef.femaleModel0 = 53096;
                 break;
             case 33170:
                 itemDef.setDefaults();
                 itemDef.id = 33170;
-                itemDef.modelId = 49902;
+                itemDef.modelId = 53096;
                 itemDef.name = "AOE Tier (2) Staff";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1887;
@@ -3432,13 +5314,13 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.zan2d = 0;
                 itemDef.xOffset2d = -26;
                 itemDef.yOffset2d = -61;
-                itemDef.maleModel0 = 49903;
-                itemDef.femaleModel0 = 49903;
+                itemDef.maleModel0 = 53096;
+                itemDef.femaleModel0 = 53096;
                 break;
             case 33171:
                 itemDef.setDefaults();
                 itemDef.id = 33171;
-                itemDef.modelId = 49904;
+                itemDef.modelId = 53096;
                 itemDef.name = "AOE Tier (3) Staff";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1887;
@@ -3447,13 +5329,13 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.zan2d = 0;
                 itemDef.xOffset2d = -26;
                 itemDef.yOffset2d = -61;
-                itemDef.maleModel0 = 49905;
-                itemDef.femaleModel0 = 49905;
+                itemDef.maleModel0 = 53096;
+                itemDef.femaleModel0 = 53096;
                 break;
             case 33172:
                 itemDef.setDefaults();
                 itemDef.id = 33172;
-                itemDef.modelId = 49906;
+                itemDef.modelId = 60417;
                 itemDef.name = "AOE Tier (4) Staff";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1887;
@@ -3462,13 +5344,13 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.zan2d = 0;
                 itemDef.xOffset2d = -26;
                 itemDef.yOffset2d = -61;
-                itemDef.maleModel0 = 49907;
-                itemDef.femaleModel0 = 49907;
+                itemDef.maleModel0 = 60417;
+                itemDef.femaleModel0 = 60417;
                 break;
             case 33174:
                 itemDef.setDefaults();
                 itemDef.id = 33174;
-                itemDef.modelId = 49911;
+                itemDef.modelId = 60417;
                 itemDef.name = "AOE Tier (5) Staff";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1887;
@@ -3477,13 +5359,13 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.zan2d = 0;
                 itemDef.xOffset2d = -26;
                 itemDef.yOffset2d = -61;
-                itemDef.maleModel0 = 49910;
-                itemDef.femaleModel0 = 49910;
+                itemDef.maleModel0 = 60417;
+                itemDef.femaleModel0 = 60417;
                 break;
             case 33173:
                 itemDef.setDefaults();
                 itemDef.id = 33173;
-                itemDef.modelId = 49908;
+                itemDef.modelId = 60886;
                 itemDef.name = "AOE God Tier Staff";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1887;
@@ -3492,9 +5374,9 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.zan2d = 0;
                 itemDef.xOffset2d = -26;
                 itemDef.yOffset2d = -61;
-                itemDef.maleModel0 = 49909;
-                itemDef.femaleModel0 = 49909;
-                break;*/
+                itemDef.maleModel0 = 60886;
+                itemDef.femaleModel0 = 60886;
+                break;
             case 33175:
                 itemDef.setDefaults();
                 itemDef.id = 33175;
@@ -4337,10 +6219,6 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.name = "Forestry backpack";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 break;
-            case 84:
-                itemDef.name = "Armadyl staff";
-                itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
-                break;
             case 33245:
                 itemDef.id = 33245;
                 itemDef.modelId = (60100);
@@ -4686,7 +6564,7 @@ public final class ItemDefinition implements RSItemComposition {
         yOffset2d = var1.yOffset2d * 1;
         colorReplace = var2.colorReplace;
         colorFind = var2.colorFind;
-        // originalTextureColors = var2.originalTextureColors;
+         //originalTextureColors = var2.originalTextureColors;
         // modifiedTextureColors = var2.modifiedTextureColors;
         name = var2.name;
         members = var2.members;
@@ -4829,8 +6707,7 @@ public final class ItemDefinition implements RSItemComposition {
             sprite.maxWidth = old_w;
             sprite.maxHeight = old_h;
         }
-
-        if (outlineColor == 0) {
+        if (outlineColor == 0 && !definition.animateInventory) {
             sprites.put(enabledSprite, itemId);
         }
 
@@ -4929,7 +6806,7 @@ public final class ItemDefinition implements RSItemComposition {
             sprite.maxWidth = old_w;
             sprite.maxHeight = old_h;
         }
-        if (outlineColor == 0)
+        if (outlineColor == 0 && (itemId != 10198 && itemId != 10199 && itemId != 33448) && !itemDef.animateInventory)
             sprites.put(enabledSprite, itemId);
         Rasterizer2D.initDrawingArea(height, width, pixels);
         Rasterizer2D.setDrawingArea(vp_bottom, vp_left, vp_right, vp_top);
@@ -5119,7 +6996,7 @@ public final class ItemDefinition implements RSItemComposition {
         }
         if (textureReplace != null) {
             for (int i1 = 0; i1 < textureReplace.length; i1++)
-                dialogueModel_.retexture(textureReplace[i1], textureFind[i1]);
+                dialogueModel_.retexture((short) textureReplace[i1], (short) textureFind[i1]);
         }
         return dialogueModel_;
     }
@@ -5200,7 +7077,7 @@ public final class ItemDefinition implements RSItemComposition {
         }
         if (textureReplace != null) {
             for (int i1 = 0; i1 < textureReplace.length; i1++)
-                primaryModel_.retexture(textureReplace[i1], textureFind[i1]);
+                primaryModel_.retexture((short) textureReplace[i1], (short) textureFind[i1]);
         }
         return primaryModel_;
     }
@@ -5394,7 +7271,7 @@ public final class ItemDefinition implements RSItemComposition {
         }
         if (textureReplace != null) {
             for (int i1 = 0; i1 < textureReplace.length; i1++)
-                model.retexture(textureReplace[i1], textureFind[i1]);
+                model.retexture((short) textureReplace[i1], (short) textureFind[i1]);
         }
         int lightInt = 64 + ambient;
         int lightMag = 768 + contrast;
@@ -5521,10 +7398,10 @@ public final class ItemDefinition implements RSItemComposition {
                     colorFind[index] = buffer.readUShort();
                 }
             } else if (opcode == 41) {
-                int length = buffer.readUnsignedByte();
-                textureFind = new short[length];
-                textureReplace = new short[length];
-                for (int index = 0; index < length; index++) {
+                int size = buffer.readUnsignedByte();
+                textureFind = new int[size];
+                textureReplace = new int[size];
+                for (int index = 0; index < size; index++) {
                     textureFind[index] = (short) buffer.readUShort();
                     textureReplace[index] = (short) buffer.readUShort();
                 }

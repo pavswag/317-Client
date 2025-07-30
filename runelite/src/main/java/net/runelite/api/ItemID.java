@@ -10196,7 +10196,7 @@ public final class ItemID
 	public static final int TOME_OF_EXPERIENCE = 22415;
 	public static final int THE_TURNCLOAK = 22416;
 	public static final int EXPLOSIVE_DISCOVERY = 22418;
-	public static final int BLOODY_GRIMOIRE = 22420;
+	public static final int BLOODY_Turmoil = 22420;
 	public static final int ELIXIR_OF_EVERLASTING = 22422;
 	public static final int BURIED_ALIVE = 22424;
 	public static final int DEED = 22426;

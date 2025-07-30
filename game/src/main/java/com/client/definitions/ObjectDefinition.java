@@ -78,7 +78,12 @@ public final class ObjectDefinition implements RSObjectComposition {
 				objectDef.description = "Demon Hunter & Slayer statue.";
 				objectDef.actions = new String[]{ null, "Attune", null, null, null};
 				break;
-
+			case 1594:
+			case 1595:
+			case 2606:
+			case 9741:
+				objectDef.actions = new String[]{ null, null, null, null, null};
+				break;
 			case 30645:
 				objectDef.name = "Santa's Sleigh";
 				objectDef.description = "Santa's Sleigh.";
@@ -87,6 +92,10 @@ public final class ObjectDefinition implements RSObjectComposition {
 				break;
 			case 31619:
 				objectDef.actions = new String[]{ null, "Access", null, null, null};
+				break;
+			case 27980:
+				objectDef.name = "Item Devourer";
+				objectDef.actions = new String[]{ null, "Dissolve Items", "Point Shop", "Dissolve Rates", null};
 				break;
 			case 15311:
 			case 15313:
@@ -123,8 +132,8 @@ public final class ObjectDefinition implements RSObjectComposition {
 				objectDef.actions = new String[]{ "Enter", null, null, null, null};
 				break;
 			case 36062:
-				objectDef.description = "Teleports you anywhere around Grimoire.";
-				objectDef.actions = new String[] { "Grimoire", "Previous Location", null, null, null };
+				objectDef.description = "Teleports you anywhere around Turmoil.";
+				objectDef.actions = new String[] { "Turmoil", "Previous Location", null, null, null };
 				break;
 			case 4152:
 				objectDef.name = "Skilling Portal";
@@ -210,7 +219,7 @@ public final class ObjectDefinition implements RSObjectComposition {
 				objectDef.name = "@pur@Platinum Altar";
 				break;
 			case 29064:
-				objectDef.name = "Grimoire Leaderboards";
+				objectDef.name = "Turmoil Leaderboards";
 				objectDef.actions = new String[] { "View", null, null, null, null };
 				break;
 			case 32508:
@@ -332,6 +341,10 @@ public final class ObjectDefinition implements RSObjectComposition {
 				objectDef.actions = new String[5];
 				objectDef.actions[0] = "Bank";
 				objectDef.name = "Group chest";
+				break;
+			case 4535:
+				objectDef.actions = new String[] { "Chop down", null, null, null, null };
+				objectDef.mapscene = 3;
 				break;
 			case 1750:
 				objectDef.objectModels = new int[] { 8131, };
@@ -580,7 +593,7 @@ public final class ObjectDefinition implements RSObjectComposition {
 				break;
 
 			case 31984:
-				objectDef.name = "Benji's Pet Dragon";
+				objectDef.name = "Kittelson's Pet Dragon";
 				objectDef.actions = new String[] { null, null, null, null, null };
 				objectDef.description = "Use bones on me and gain double XP while I eat.";
 				break;

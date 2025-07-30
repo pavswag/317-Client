@@ -87,7 +87,16 @@ public class SpriteLoader {
 
 	public static AnimatedSprite fetchAnimatedSprite(String location) {
 		if (!animatedSpriteMap.containsKey(location)) {
-			AnimatedSprite tempSprite = new AnimatedSprite(location);
+			AnimatedSprite tempSprite = null;
+			if (location.startsWith("http://") || location.startsWith("https://")) {
+				try {
+					tempSprite = new AnimatedSprite(new java.net.URL(location));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				tempSprite = new AnimatedSprite(location);
+			}
             animatedSpriteMap.put(location, tempSprite);
         }
 		return animatedSpriteMap.get(location);

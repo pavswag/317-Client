@@ -7,6 +7,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 
+import com.client.draw.HoverManager;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
@@ -30,6 +31,7 @@ import javax.swing.JFrame;
 
 import ch.qos.logback.classic.Level;
 import com.client.accounts.Account;
+import com.client.discord.RPC;
 import com.client.graphics.interfaces.*;
 import com.client.graphics.interfaces.impl.health_hud.HealthHud;
 import com.client.graphics.interfaces.impl.notification.NotificationInterface;
@@ -1626,7 +1628,7 @@ public class Client extends GameEngine implements RSClient {
     public void repackCacheAll() {
         packCustomMaps();
         packCustomModels();
-        packCustomAnimations();
+       // packCustomAnimations();
     }
 
     public byte[] fileToByteArray(File file) {
@@ -2619,6 +2621,12 @@ public class Client extends GameEngine implements RSClient {
                                     if (class9_1.inventoryItemId[k2] > 0) {
                                         ItemDefinition itemDef = ItemDefinition.lookup(itemID);
                                         boolean hasDestroyOption = false;
+                                        boolean customHover = HoverManager.shouldDraw(itemDef.id);
+                                        if (customHover) {
+                                            hintMenu = true;
+                                            hintName = itemDef.name;
+                                            hintId = itemDef.id;
+                                        }
                                         if (itemSelected == 1 && class9_1.isInventoryInterface) {
                                             if (class9_1.id != anInt1284 || k2 != anInt1283) {
                                                 MenuEntry menuEntry = (MenuEntry) new MenuEntry(menuActionRow)
@@ -2659,11 +2667,10 @@ public class Client extends GameEngine implements RSClient {
                                                                 .setParam0(k2)
                                                                 .setWidget(class9_1)
                                                                 .setParam1(class9_1.id);
-                                                        if (itemDef.interfaceOptions[l3].contains("Wield") || itemDef.interfaceOptions[l3].contains("Wear")) {
-                                                            hintMenu = true;
+                                                        if (customHover || itemDef.interfaceOptions[l3].contains("Wield") || itemDef.interfaceOptions[l3].contains("Wear")) {                                                            hintMenu = true;
                                                             hintName = itemDef.name;
                                                             hintId = itemDef.id;
-                                                        } else {
+                                                        } else if (!customHover) {
                                                             hintMenu = false;
                                                         }
                                                         if (l3 == 3)
@@ -2838,11 +2845,11 @@ public class Client extends GameEngine implements RSClient {
                                                 for (int i4 = 2; i4 >= 0; i4--)
                                                     if (itemDef.interfaceOptions[i4] != null) {
 
-                                                        if (itemDef.interfaceOptions[i4].contains("Wield") || itemDef.interfaceOptions[i4].contains("Wear")) {
+                                                        if (customHover || itemDef.interfaceOptions[i4].contains("Wield") || itemDef.interfaceOptions[i4].contains("Wear")) {
                                                             hintMenu = true;
                                                             hintName = itemDef.name;
                                                             hintId = itemDef.id;
-                                                        } else {
+                                                        } else if (!customHover) {
                                                             hintMenu = false;
                                                         }
 
@@ -4947,7 +4954,7 @@ public class Client extends GameEngine implements RSClient {
 
     public static Client getClient(boolean runelite, String... args) {
         try {
-//			RPC.init();
+			RPC.init();
 
             System.out.println("Running Java version " + getVersion());
             Client.runelite = runelite;
@@ -5682,9 +5689,14 @@ public class Client extends GameEngine implements RSClient {
             super.drawInitial(percentage, s + " " + (percentage) + "%", false);
             return;
         }
-
-        Sprite background = new Sprite("loginscreen/background");
-        background.drawAdvancedSprite(0, 0);
+        Sprite background = null;
+        if (Configuration.USE_GIF_LOADING_SCREEN && loadingBackgroundGif != null) {
+            loadingBackgroundGif.update();
+            loadingBackgroundGif.getInstance(canvasWidth, canvasHeight).drawAdvancedSprite(0, 0, 255);
+        } else {
+            background = new Sprite("loginscreen/background");
+            background.drawAdvancedSprite(0, 0);
+        }
         int x = 765 / 2 - 543 / 2;
         int y = 475 - 20 + 8;
         int width = 540;
@@ -9269,6 +9281,7 @@ public class Client extends GameEngine implements RSClient {
     }
 
     public void drawHintMenu(String itemName, int itemId, int color) {
+        HoverManager.reset();
         int mouseX = MouseHandler.mouseX;
         int mouseY = MouseHandler.mouseY;
         MenuEntry menuEntry = menuManager.getMenuEntry(menuActionRow - 1);
@@ -9277,12 +9290,27 @@ public class Client extends GameEngine implements RSClient {
                 return;
             }
         }
-        if (!toolTip.contains("Wear") && !toolTip.contains("Wield")) {
+        if (HoverManager.shouldDraw(itemId)) {
+            HoverManager.hintId = itemId;
+            HoverManager.hintName = itemName;
+            HoverManager.showMenu = true;
+            HoverManager.drawHintMenu();
             return;
         }
-        //if(toolTip!=null){
-        //	return;
-        //}
+        boolean customHover = HoverManager.shouldDraw(itemId);
+
+        if (!toolTip.contains("Wear") && !toolTip.contains("Wield")) {
+            if (customHover && !controlIsDown) {
+                HoverManager.hintId = itemId;
+                HoverManager.hintName = itemName;
+                HoverManager.showMenu = true;
+                HoverManager.drawHintMenu();
+            }
+            return;
+        }
+//if(toolTip!=null){
+//	return;
+//}
         if (openInterfaceID != -1) {
             return;
         }
@@ -9299,6 +9327,13 @@ public class Client extends GameEngine implements RSClient {
             return;
         }
 
+        if (customHover) {
+            HoverManager.hintId = itemId;
+            HoverManager.hintName = itemName;
+            HoverManager.showMenu = true;
+            HoverManager.drawHintMenu();
+            return;
+        }
         if (menuActionRow < 2 && itemSelected == 0 && spellSelected == 0) {
             return;
         }
@@ -9322,7 +9357,7 @@ public class Client extends GameEngine implements RSClient {
         if (menuActionRow < 2 && itemSelected == 0 && spellSelected == 0) {
             return;
         }
-        MenuEntry menuEntry = menuManager.getMenuEntry(menuActionRow);
+        MenuEntry menuEntry = menuManager.getMenuEntry(menuActionRow - 1);
         if (menuEntry != null && menuEntry.getOption() != null) {
             if (menuEntry.getOption().contains("Walk")) {
                 return;
@@ -9347,7 +9382,7 @@ public class Client extends GameEngine implements RSClient {
         mouseY -= 50;
 
 
-        if (ItemStats.itemstats[itemId] == null) {
+        if (itemId < 0 || itemId >= ItemStats.itemstats.length || ItemStats.itemstats[itemId] == null) {
             return;
         }
         short stabAtk = (short) ItemStats.itemstats[itemId].attackBonus[0];
@@ -12095,7 +12130,18 @@ public class Client extends GameEngine implements RSClient {
             }
         }
     }
+    /**
+     * Draw a simple animated gradient background on the login screen.
+     */
+    private void drawAnimatedLoginBackground() {
+        int color1 = java.awt.Color.HSBtoRGB((loginBackgroundHue % 360) / 360f, 0.6f, 0.4f);
+        int color2 = java.awt.Color.HSBtoRGB(((loginBackgroundHue + 45) % 360) / 360f, 0.6f, 0.4f);
+        Rasterizer2D.drawAlphaGradient(0, 0, canvasWidth, canvasHeight, color1, color2, 256);
+        loginBackgroundHue = (loginBackgroundHue + 1) % 360;
+    }
 
+    /** Hue used for the animated login background. */
+    private int loginBackgroundHue = 0;
     public void addObject(int objectId, int x, int y, int face, int type, int height) {
         int mX = currentRegionX - 6;
         int mY = currentRegionY - 6;
@@ -12135,7 +12181,10 @@ public class Client extends GameEngine implements RSClient {
         }
         return "";
     }
-
+    /** Animated gif background for the login screen when enabled. */
+    private AnimatedSprite loginBackgroundGif;
+    /** Animated gif displayed during the loading bar when enabled. */
+    private AnimatedSprite loadingBackgroundGif;
     public FileArchive mediaStreamLoader;
 
     @Override
@@ -12170,7 +12219,6 @@ public class Client extends GameEngine implements RSClient {
 //		cacheDownloader.awaitCompletion();
 
         OSRSCacheLoader.init();
-
         SpriteLoader1.loadSprites();
         cacheSprite1 = SpriteLoader1.sprites;
         SpriteLoader1.sprites = null;
@@ -12190,6 +12238,7 @@ public class Client extends GameEngine implements RSClient {
         try {
             ItemDef.load();
             ItemStats.readDefinitions();
+            HoverManager.init();
             titleStreamLoader = streamLoaderForName(1, "title screen");
             drawLoadingText(12, "Loading Fonts...");
             smallText = new TextDrawingArea(false, "p11_full" + fontFilter(), titleStreamLoader);
@@ -12244,19 +12293,22 @@ public class Client extends GameEngine implements RSClient {
 
             FileArchive streamLoader_6 = streamLoaderForName(5, "update list");
             drawLoadingText(30, "Connecting to update server");
-
             resourceProvider = new OnDemandFetcher();
             resourceProvider.start(streamLoader_6, this);
 
             if (Configuration.dumpMaps) {
                 resourceProvider.dumpMaps();
             }
-
             if (Configuration.packIndexData) {
-//				repackCacheAll();
-                repackCacheIndex(4); // maps
+				repackCacheAll();
+                System.out.println("trying to pack");
+
+                //  repackCacheIndex(4); // maps
             }
             Frame.method528();
+
+           // repackCacheIndex(4);
+            // repackCacheAll();
 
             Model.init();
 
@@ -12307,7 +12359,14 @@ public class Client extends GameEngine implements RSClient {
             loginBox = new Sprite("loginscreen2/5000");
             loginScreenBackground = new Sprite("/loginscreen2/57");
             loginScreenBackgroundCaptcha = new Sprite("/loginscreen/captcha_background");
-
+            if (Configuration.USE_GIF_LOGIN_BACKGROUND) {
+                loginBackgroundGif = SpriteLoader.fetchAnimatedSprite(
+                        Configuration.GIF_BASE_URL + "login_background.gif");
+            }
+            if (Configuration.USE_GIF_LOADING_SCREEN) {
+                loadingBackgroundGif = SpriteLoader.fetchAnimatedSprite(
+                        Configuration.GIF_BASE_URL + "login_background.gif");
+            }
             drawLoadingText(45, "Unpacking media");
             File[] file = new File(Signlink.getCacheDirectory() + "/sprites/sprites/").listFiles();
             int size = 0;
@@ -12355,7 +12414,8 @@ public class Client extends GameEngine implements RSClient {
             for (int index = 0; index < iconPack.length; index++) {
                 iconPack[index] = new Sprite("icon_pack/" + index);
             }
-
+           // packCustomMaps();
+           // packCustomModels();
             RSFont.unpackImages(modIcons, clanIcons, iconPack);
             drawLoadingText(53, "Unpacking media");
             mapEdge = new Sprite(streamLoader_2, "mapedge", 0);
@@ -12776,7 +12836,7 @@ public class Client extends GameEngine implements RSClient {
         Rasterizer2D.drawRectangle(200, 200 + moveY, 100, 100, 0x27A2B0);
 
         /* Messages */
-        newBoldFont.drawCenteredString("Grimoire", centerX + 5, centerY - 105, 0x27A2B0, 1);
+        newBoldFont.drawCenteredString("Turmoil", centerX + 5, centerY - 105, 0x27A2B0, 1);
         newRegularFont.drawCenteredString("Account Manager", centerX + 5, centerY - 85, 0xD4A190, 1);
         newBoldFont.drawCenteredString(account.username == null ? "" : Utility.formatName(account.username), 385, 210 + moveY, 0x27A2B0, 0);
         newBoldFont.drawBasicString("Created:", 320, 235 + moveY, 0xD4A190, 0);
@@ -12814,7 +12874,7 @@ public class Client extends GameEngine implements RSClient {
         Rasterizer2D.drawRectangle(175, 175 + moveY, 425, 150, 0x27A2B0);
 
         /* Messages */
-        newBoldFont.drawCenteredString("Grimoire", centerX + 5, centerY - 115, 0x27A2B0, 1);
+        newBoldFont.drawCenteredString("Turmoil", centerX + 5, centerY - 115, 0x27A2B0, 1);
         newRegularFont.drawCenteredString("Error Message", centerX + 5, centerY - 95, 0xD4A190, 1);
         newBoldFont.drawCenteredString(firstLoginMessage, centerX + 5, centerY + 25, 0xD4A190, 1);
         newBoldFont.drawCenteredString("[ Click anywhere to return to the main screen ]", centerX + 5, centerY + 150, 0xFFFFFF, 1);
@@ -13571,6 +13631,8 @@ public class Client extends GameEngine implements RSClient {
 
 
     private void drawGameScreen() {
+        // Reset hover hint each frame so menus don't persist when not hovering an item
+        hintMenu = false;
         if (fullscreenInterfaceID != -1 && loadingStage == 2) {
             if (loadingStage == 2) {
                 try {
@@ -13718,6 +13780,9 @@ public class Client extends GameEngine implements RSClient {
 
             if (getUserSettings().isInventoryContextMenu() && hintMenu && showTabComponents) {
                 drawHintMenu(hintName, hintId, getUserSettings().getStartMenuColor());
+            } else {
+                HoverManager.reset();
+                hintMenu = false;
             }
         }
 
@@ -17516,11 +17581,21 @@ public class Client extends GameEngine implements RSClient {
 
         int centerX = canvasWidth / 2, centerY = canvasHeight / 2;
 
-        if (System.currentTimeMillis() - lastLogin > 50) {
-            if (loginScreenState == LoginScreenState.CAPTCHA)
-                loginScreenBackgroundCaptcha.drawAdvancedSprite(0, 0);
-            else
-                loginScreenBackground.drawAdvancedSprite(0, 0);
+        if (System.currentTimeMillis() - lastLogin > 16) {
+            if (Configuration.USE_GIF_LOGIN_BACKGROUND && loginBackgroundGif != null) {
+                loginBackgroundGif.update();
+                loginBackgroundGif.getInstance(canvasWidth, canvasHeight).drawAdvancedSprite(0, 0, 255);
+                if (loginScreenState == LoginScreenState.CAPTCHA) {
+                    loginScreenBackgroundCaptcha.drawAdvancedSprite(0, 0);
+                }
+            } else {
+                drawAnimatedLoginBackground();
+                if (loginScreenState == LoginScreenState.CAPTCHA)
+                    loginScreenBackgroundCaptcha.drawAdvancedSprite(0, 0);
+                else
+                    loginScreenBackground.drawAdvancedSprite(0, 0);
+            }
+            lastLogin = System.currentTimeMillis();
         }
 
         if (Configuration.developerMode) {
@@ -18204,7 +18279,17 @@ public class Client extends GameEngine implements RSClient {
             if (MouseHandler.clickMode3 == 1 && MouseHandler.saveClickX >= 325
                     && MouseHandler.saveClickX <= 443 && MouseHandler.saveClickY >= 350
                     && MouseHandler.saveClickY <= 388) {
-
+                if (Configuration.SAVE_ACCOUNTS) {
+                    AccountManager.add(myUsername, getPassword(), 0);
+                    AccountManager.saveAccount();
+                    informationFile.setStoredUsername(myUsername);
+                    informationFile.setStoredPassword(getPassword());
+                    try {
+                        informationFile.write();
+                    } catch (java.io.IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 loginFailures = 0;
                 login(myUsername, getPassword(), false);
                 if (loggedIn)
@@ -20494,6 +20579,9 @@ public class Client extends GameEngine implements RSClient {
         xpAddedPos = expAdded = 0;
         xpLock = false;
         experienceCounter = 0;
+        loginBackgroundHue = 0;
+        loginBackgroundGif = null;
+        loadingBackgroundGif = null;
         sounds = new int[50];
         soundLoops = new int[50];
         soundType = new int[50];

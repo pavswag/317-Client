@@ -20456,8 +20456,8 @@ public class Items {
     public static final int THE_TURNCLOAK_2 = 22_417;
     public static final int EXPLOSIVE_DISCOVERY = 22_418;
     public static final int EXPLOSIVE_DISCOVERY_2 = 22_419;
-    public static final int BLOODY_GRIMOIRE = 22_420;
-    public static final int BLOODY_GRIMOIRE_2 = 22_421;
+    public static final int BLOODY_Turmoil = 22_420;
+    public static final int BLOODY_Turmoil_2 = 22_421;
     public static final int ELIXIR_OF_EVERLASTING = 22_422;
     public static final int ELIXIR_OF_EVERLASTING_2 = 22_423;
     public static final int BURIED_ALIVE = 22_424;

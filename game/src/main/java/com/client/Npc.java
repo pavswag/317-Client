@@ -22,9 +22,46 @@ import java.util.Iterator;
 
 public final class Npc extends Entity implements RSNPC {
 
+	public static int field1341 = 1;
+	public String displayName;
+	public int combatLevel;
+	public String[] actions;
+	private Player owner = null;
 	private Model getAnimatedModel() {
 		SeqDefinition primarySeq = null;
 		SeqDefinition secondarySeq = null;
+		if(desc != null && desc.id == 12780) {
+			if(owner == null) {
+				Actor interacting = getInteracting();
+				if (interacting != null && interacting instanceof Player) {
+					owner = (Player) interacting;
+					walkAnimIndex = owner.walkAnimIndex;
+				}
+				return null;
+			} else {
+				Model model = owner.getRotatedModel();
+				model.scale(75, 75, 75);
+				return model;
+			}
+		}
+
+		if(definition != null && definition.id == 12781) {
+			if(owner == null) {
+				Actor interacting = getInteracting();
+				if (interacting != null && interacting instanceof Player) {
+					owner = (Player) interacting;
+					walkAnimIndex = owner.walkAnimIndex;
+				}
+				return null;
+			} else {
+				Model model = owner.getRotatedModel();
+				model.scale(75, 75, 75);
+				model.recolor(0);
+				model.prepareSkeleton();
+				model.light(64, 850, -30, -50, -30, true);
+				return model;
+			}
+		}
 		if ((super.primarySeqID >= 0) && (super.primarySeqDelay == 0)) {
 			primarySeq = SeqDefinition.get(super.primarySeqID);
 			boolean primarySeqIsSkeletal = primarySeq.isSkeletalAnimation();
@@ -35,6 +72,7 @@ public final class Npc extends Entity implements RSNPC {
 				boolean secondarySeqIsSkeletal = primarySeq.isSkeletalAnimation();
 				secondaryTransformID = secondarySeqIsSkeletal ? -1 : secondarySeq.getFrameIDs()[super.secondarySeqFrame];
 			}
+
 			// double anim
 			if (primarySeq.isSkeletalAnimation() || (secondarySeq != null && secondarySeq.isSkeletalAnimation())) {
 				return desc.getAnimatedModelSkeletal(primarySeq, secondarySeq, primarySeqFrame, secondarySeqFrame);
@@ -118,6 +156,7 @@ public final class Npc extends Entity implements RSNPC {
 		return desc != null;
 	}
 
+	public NpcDefinition definition;
 	Npc() {
 
 	}

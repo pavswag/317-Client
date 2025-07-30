@@ -23,7 +23,7 @@ public class SettingsManager {
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(SettingsManager.class.getName());
 
 	public static final int DEFAULT_FOG_COLOR = 0;
-	public static final int DEFAULT_START_MENU_COLOR = 0;
+	public static final int DEFAULT_START_MENU_COLOR = 0xFF00FF;
 	public static final int DEFAULT_CHAT_COLOR_OPTION = 0;
 
 	public static void saveSettings(Client client) throws IOException {
