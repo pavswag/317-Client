@@ -1,11 +1,18 @@
 package com.client.draw;
 
+import java.io.FileReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.client.*;
 import com.client.definitions.ItemDefinition;
 import com.client.engine.impl.MouseHandler;
+import com.client.sign.Signlink;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 public class HoverManager {
@@ -15,124 +22,21 @@ public class HoverManager {
     public static HashMap<Integer, HoverMenu> menus = new HashMap<Integer, HoverMenu>();
 
     public static void init() {
-        // PETS:
-        menus.put(20670, new HoverMenu("Auto-loots every non-spawnable items in non wilderness."));
-        menus.put(23603, new HoverMenu("Auto banks every item in non wilderness."));
-        menus.put(22001, new HoverMenu("Protects one extra item upon death when being skulled."));
-        menus.put(23500, new HoverMenu("Heals 1/5 of all damage dealt above 25."));
-
-        //WEAPONS:
-        menus.put(12006, new HoverMenu("A whip which has 1/15 chance to poison your enemy."));
-        menus.put(24015, new HoverMenu("A stronger variant of the whip which has 1/7 chance to poison your enemy."));
-        menus.put(12773, new HoverMenu("A whip which has 1/15 chance to burn your enemy."));
-        menus.put(12774, new HoverMenu("A whip which has 1/15 chance to freeze your enemy."));
-        menus.put(20368, new HoverMenu("Stronger and requires less special attack energy."));
-        menus.put(20370, new HoverMenu("Stronger and requires less special attack energy."));
-        menus.put(20372, new HoverMenu("Stronger and requires less special attack energy."));
-        menus.put(20374, new HoverMenu("Stronger and requires less special attack energy."));
-        menus.put(13652, new HoverMenu("Stronger and requires less special attack energy."));
-
-        // EQUIPMENT:
-        menus.put(23582, new HoverMenu("The best in-game pickaxe and axe."));
-        menus.put(11864, new HoverMenu("Deal 10% more damage against current slayer task."));
-        menus.put(11865, new HoverMenu("Deal 15% more damage against current slayer task."));
-        menus.put(19639, new HoverMenu("Deal 20% more damage against current slayer task."));
-        menus.put(19643, new HoverMenu("Deal 20% more damage against current slayer task."));
-        menus.put(19647, new HoverMenu("Deal 20% more damage against current slayer task."));
-        menus.put(21264, new HoverMenu("Deal 20% more damage against current slayer task."));
-        menus.put(21888, new HoverMenu("Deal 20% more damage against current slayer task."));
-        menus.put(23597, new HoverMenu("A rare reward for all beta players, I should save this for later."));
-
-        // EXPERIENCE BOOSTED ITEMS:
-        menus.put(7409, new HoverMenu("Provides 25% more herblore experience while worn."));
-        menus.put(7451, new HoverMenu("Provides 25% more cooking experience while worn."));
-        menus.put(11850, new HoverMenu("Provides 25% more agility experience while wearing full set."));
-        menus.put(11852, new HoverMenu("Provides 25% more agility experience while wearing full set."));
-        menus.put(11854, new HoverMenu("Provides 25% more agility experience while wearing full set."));
-        menus.put(11856, new HoverMenu("Provides 25% more agility experience while wearing full set."));
-        menus.put(11858, new HoverMenu("Provides 25% more agility experience while wearing full set."));
-        menus.put(11860, new HoverMenu("Provides 25% more agility experience while wearing full set."));
-        menus.put(10941, new HoverMenu("Provides 25% more woodcutting experience while wearing full set."));
-        menus.put(10939, new HoverMenu("Provides 25% more woodcutting experience while wearing full set."));
-        menus.put(10940, new HoverMenu("Provides 25% more woodcutting experience while wearing full set."));
-        menus.put(10933, new HoverMenu("Provides 25% more woodcutting experience while wearing full set."));
-        menus.put(12013, new HoverMenu("Provides 25% more mining experience while wearing full set."));
-        menus.put(12014, new HoverMenu("Provides 25% more mining experience while wearing full set."));
-        menus.put(12015, new HoverMenu("Provides 25% more mining experience while wearing full set."));
-        menus.put(12016, new HoverMenu("Provides 25% more mining experience while wearing full set."));
-        menus.put(13258, new HoverMenu("Provides 25% more fishing experience while wearing full set."));
-        menus.put(13259, new HoverMenu("Provides 25% more fishing experience while wearing full set."));
-        menus.put(13260, new HoverMenu("Provides 25% more fishing experience while wearing full set."));
-        menus.put(13261, new HoverMenu("Provides 25% more fishing experience while wearing full set."));
-        menus.put(13646, new HoverMenu("Provides 25% more farming experience while wearing full set."));
-        menus.put(13642, new HoverMenu("Provides 25% more farming experience while wearing full set."));
-        menus.put(13643, new HoverMenu("Provides 25% more farming experience while wearing full set."));
-        menus.put(13640, new HoverMenu("Provides 25% more farming experience while wearing full set."));
-        menus.put(13644, new HoverMenu("Provides 25% more farming experience while wearing full set."));
-        menus.put(20708, new HoverMenu("Provides 25% more firemaking experience while wearing full set."));
-        menus.put(20710, new HoverMenu("Provides 25% more firemaking experience while wearing full set."));
-        menus.put(20712, new HoverMenu("Provides 25% more firemaking experience while wearing full set."));
-        menus.put(20704, new HoverMenu("Provides 25% more firemaking experience while wearing full set."));
-        menus.put(20706, new HoverMenu("Provides 25% more firemaking experience while wearing full set."));
-        menus.put(5554, new HoverMenu("Provides 25% more thieving experience while wearing full set."));
-        menus.put(5553, new HoverMenu("Provides 25% more thieving experience while wearing full set."));
-        menus.put(5555, new HoverMenu("Provides 25% more thieving experience while wearing full set."));
-        menus.put(5556, new HoverMenu("Provides 25% more thieving experience while wearing full set."));
-        menus.put(5557, new HoverMenu("Provides 25% more thieving experience while wearing full set."));
-        menus.put(6799, new HoverMenu("Does not stack and vanishes when you log out."));
-        menus.put(6800, new HoverMenu("Does not stack and vanishes when you log out."));
-        menus.put(6801, new HoverMenu("Does not stack and vanishes when you log out."));
-        menus.put(6803, new HoverMenu("Does not stack and vanishes when you log out."));
-        menus.put(23206, new HoverMenu("Hits guaranteed double."));
-
-        // FOOD:
-        menus.put(10541, new HoverMenu("Heals @lre@23@whi@ and makes you immume to poison for 5 minutes."));
-        menus.put(385, new HoverMenu("Heals @lre@22"));
-        menus.put(1971, new HoverMenu("Heals @lre@4"));
-        menus.put(1985, new HoverMenu("Heals @lre@4"));
-        menus.put(1891, new HoverMenu("Heals @lre@5"));
-        menus.put(1893, new HoverMenu("Heals @lre@5"));
-        menus.put(1895, new HoverMenu("Heals @lre@5"));
-        menus.put(14640, new HoverMenu("Heals @lre@12"));
-        menus.put(247, new HoverMenu("Heals @lre@2"));
-        menus.put(2205, new HoverMenu("Heals @lre@7"));
-        menus.put(403, new HoverMenu("Heals @lre@4"));
-        menus.put(319, new HoverMenu("Heals @lre@1"));
-        menus.put(315, new HoverMenu("Heals @lre@3"));
-        menus.put(325, new HoverMenu("Heals @lre@4"));
-        menus.put(339, new HoverMenu("Heals @lre@7"));
-        menus.put(333, new HoverMenu("Heals @lre@7"));
-        menus.put(351, new HoverMenu("Heals @lre@8"));
-        menus.put(329, new HoverMenu("Heals @lre@9"));
-        menus.put(361, new HoverMenu("Heals @lre@10"));
-        menus.put(379, new HoverMenu("Heals @lre@12"));
-        menus.put(365, new HoverMenu("Heals @lre@13"));
-        menus.put(373, new HoverMenu("Heals @lre@14"));
-        menus.put(2293, new HoverMenu("Heals @lre@14"));
-        menus.put(7946, new HoverMenu("Heals @lre@16"));
-        menus.put(385, new HoverMenu("Heals @lre@20"));
-        menus.put(397, new HoverMenu("Heals @lre@21"));
-        menus.put(391, new HoverMenu("Heals @lre@22"));
-        menus.put(3144, new HoverMenu("Heals @lre@18@whi@ and can be consumed nearly instantly with no delay."));
-        menus.put(13441, new HoverMenu("Heals @lre@22"));
-
-        // MYSTERY BOXES:
-        menus.put(6199, new HoverMenu("Contains various random rewards:",
-                Arrays.asList(4151, 11235, 2577, 2581, 6585, 12849, 11838, 4716, 4718, 4722, 4720, 4753, 4755, 4757, 4759, 7462)));
-        menus.put(989, new HoverMenu("Use it on the crystal chest to get a reward:",
-                Arrays.asList(23604, 4087, 11840, 6735, 6731, 6733, 6737, 11838, 12796, 12000)));
-
-
-        menus.put(19941, new HoverMenu("A wearable mystery casket which contains guaranteed one of these items:",
-                Arrays.asList(22324, 20997, 21003, 21006, 23528, 23854, 23856, 22325, 21295, 23594, 23595, 23596, 23206, 2699)));
-
-
-        menus.put(13346, new HoverMenu("Contains various rare items:",
-                Arrays.asList(12924, 22647, 22653, 22656, 22650, 22625, 22628, 22631,22622, 20784, 20997, 21003, 22324, 23594, 23595, 23596)));
-        menus.put(13347, new HoverMenu("Contains various rare pets:",
-                Arrays.asList(12703, 12816, 12655, 13247, 12648, 22000, 22473, 22001, 23603, 23602, 23601, 23600, 22001, 23500)));
-
+        loadFromFile(Signlink.getCacheDirectory() + "item_tooltips.json");
         System.out.println("Somnium has loaded " + menus.size() + "x menu hovers.");
+    }
+
+    private static void loadFromFile(String file) {
+        try (Reader reader = new FileReader(file)) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<Map<String, String>>(){}.getType();
+            Map<String, String> data = gson.fromJson(reader, type);
+            for (Map.Entry<String, String> e : data.entrySet()) {
+                menus.put(Integer.parseInt(e.getKey()), new HoverMenu(e.getValue()));
+            }
+        } catch (Exception e) {
+            System.err.println("Unable to load hover menus: " + e.getMessage());
+        }
     }
 
     public static int drawType() {
@@ -172,8 +76,8 @@ public class HoverManager {
                 && Client.instance.spellSelected == 0) {
             return false;
         }
-        if (Client.instance.getMenuManager().getMenuEntry(Client.instance.menuActionRow) != null) {
-            if (Client.instance.getMenuManager().getMenuEntry(Client.instance.menuActionRow).getOption().contains("Walk")) {
+        if (Client.instance.getMenuManager().getMenuEntry(Client.instance.menuActionRow - 1) != null) {
+            if (Client.instance.getMenuManager().getMenuEntry(Client.instance.menuActionRow - 1).getOption().contains("Walk")) {
                 return false;
             }
         }
@@ -291,7 +195,12 @@ public class HoverManager {
             return;
         }
 
-        if(ItemBonusDefinition.getItemBonusDefinition(hintId) == null) {
+        ItemStats stats = null;
+        if (hintId >= 0 && hintId < ItemStats.itemstats.length) {
+            stats = ItemStats.itemstats[hintId];
+        }
+        if (stats == null) {
+            System.out.println("ItemStats: missing stats for id " + hintId);
             HoverManager.reset();
             return;
         }
@@ -303,20 +212,20 @@ public class HoverManager {
         mouseY -= 50;
 
 
-        short stabAtk = ItemBonusDefinition.getItemBonuses(hintId)[0];
-        int slashAtk = ItemBonusDefinition.getItemBonuses(hintId)[1];
-        int crushAtk = ItemBonusDefinition.getItemBonuses(hintId)[2];
-        int magicAtk = ItemBonusDefinition.getItemBonuses(hintId)[3];
-        int rangedAtk = ItemBonusDefinition.getItemBonuses(hintId)[4];
+        int stabAtk = stats.attackBonus[0];
+        int slashAtk = stats.attackBonus[1];
+        int crushAtk = stats.attackBonus[2];
+        int magicAtk = stats.attackBonus[3];
+        int rangedAtk = stats.attackBonus[4];
 
-        int stabDef = ItemBonusDefinition.getItemBonuses(hintId)[5];
-        int slashDef = ItemBonusDefinition.getItemBonuses(hintId)[6];
-        int crushDef = ItemBonusDefinition.getItemBonuses(hintId)[7];
-        int magicDef = ItemBonusDefinition.getItemBonuses(hintId)[8];
-        int rangedDef = ItemBonusDefinition.getItemBonuses(hintId)[9];
+        int stabDef = stats.defenceBonus[0];
+        int slashDef = stats.defenceBonus[1];
+        int crushDef = stats.defenceBonus[2];
+        int magicDef = stats.defenceBonus[3];
+        int rangedDef = stats.defenceBonus[4];
 
-        int prayerBonus = ItemBonusDefinition.getItemBonuses(hintId)[11];
-        int strengthBonus = ItemBonusDefinition.getItemBonuses(hintId)[10];
+        int prayerBonus = stats.prayerBonus;
+        int strengthBonus = stats.strengthBonus;
 
         Rasterizer2D.drawBoxOutline(mouseX, mouseY + 5, 150, 120, 0x696969);
         Rasterizer2D.drawTransparentBox(mouseX + 1, mouseY + 6, 150, 121, 0x000000, 90);

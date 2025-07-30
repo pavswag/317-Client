@@ -38,8 +38,10 @@ public class MenuManager {
     }
 
     public MenuEntry getMenuEntry(int idx) {
-        MenuEntry entry = (MenuEntry) Client.instance.getMenuEntries()[idx];//menuEntries[idx];
-        return entry;
+        if (idx < 0 || idx >= menuEntries.length) {
+            return null;
+        }
+        return menuEntries[idx];
     }
 
     public void reset() {

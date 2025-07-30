@@ -15,17 +15,19 @@ public class Settings implements Serializable {
 	 */
 	private static final long serialVersionUID = 4394926495169279946L;
 
-	public static Settings getDefault() {
-		Settings settings = new Settings();
-		settings.oldGameframe = false;
-		settings.gameTimers = true;
-		settings.antiAliasing = false;
-		settings.groundItemOverlay = false;
-		settings.fog = false;
-		settings.smoothShading = false;
-		settings.tileBlending = false;
-		settings.inventoryContextMenu = false;
-		settings.startMenuColor = SettingsManager.DEFAULT_START_MENU_COLOR;
+        public static Settings getDefault() {
+                Settings settings = new Settings();
+                settings.oldGameframe = false;
+                settings.gameTimers = true;
+                settings.antiAliasing = false;
+                settings.groundItemOverlay = false;
+                settings.fog = false;
+                settings.smoothShading = false;
+                settings.tileBlending = false;
+                // Enable the inventory hover menu by default using the
+                // configured start menu color.
+                settings.inventoryContextMenu = true;
+                settings.startMenuColor = SettingsManager.DEFAULT_START_MENU_COLOR;
 		settings.chatColor = SettingsManager.DEFAULT_CHAT_COLOR_OPTION;
 		settings.bountyHunter = true;
 		settings.showEntityTarget = true;

@@ -2,11 +2,18 @@ package com.client;
 
 import com.client.definitions.ItemDefinition;
 import com.client.sign.Signlink;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
+import java.util.Iterator;
+import java.util.Map;
+
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author ArkCane
@@ -22,7 +29,15 @@ public class ItemStats {
     public static final int MAGIC = 3;
     public static final int RANGED = 4;
 
-    public static ItemStats[] itemstats = new ItemStats[ItemDefinition.totalItems > 0 ? ItemDefinition.totalItems : 35000];
+    /**
+     * Array of item stats indexed by item id. Some servers use custom
+     * item ids above the {@code totalItems} count from the cache. The
+     * item definition loader allocates extra space for these ids, so do
+     * the same here to avoid {@link ArrayIndexOutOfBoundsException} when
+     * looking up stats for custom items.
+     */
+    public static ItemStats[] itemstats = new ItemStats[
+            ItemDefinition.totalItems > 0 ? ItemDefinition.totalItems + 20_000 : 35_000];
 
     public int itemId;
     public int[] attackBonus;
@@ -48,40 +63,102 @@ public class ItemStats {
         this.type = typeOfStat;
     }
 
+    /**
+     * No-argument constructor for JSON deserialization.
+     */
+    public ItemStats() {
+    }
+
     private static int readType = 0;
 
     public static void readDefinitions() {
+        InputStream is = null;
+        boolean fromCache = false;
+        int count = 0;
         try {
-            File file = new File(Signlink.getCacheDirectory() + "itemstats.dat");
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                if (line.equals("[STATS]")) {
-                    readType = 1;
-                    continue;
-                }
-                if (readType == 1) {
-                    String[] data = line.split(" ");
-                    int slot = 0;
-                    int id = Integer.parseInt(data[slot++]);
-                    itemstats[id] = new ItemStats(id, readType);
-                    for (int i = 0; i < 5; ++i) {
-                        itemstats[id].attackBonus[i] = Integer.parseInt(data[slot++]);
-                    }
-                    for (int i = 0; i < 5; ++i) {
-                        itemstats[id].defenceBonus[i] = Integer.parseInt(data[slot++]);//the problem is that it doesnt print out 12 things
-                        //like 0 0 0 0 0 0 0 0 0 it has do to that for every single item
-                    }
-                    itemstats[id].strengthBonus = Integer.parseInt(data[slot++]);
-                    itemstats[id].rangeBonus = Integer.parseInt(data[slot++]);
-                    itemstats[id].magicBonus = Integer.parseInt(data[slot++]);
-                    itemstats[id].prayerBonus = Integer.parseInt(data[slot++]);
+            File file = new File(Signlink.getCacheDirectory() + "item_stats.json");
+
+            if (file.exists()) {
+                is = new FileInputStream(file);
+                fromCache = true;
+            } else {
+                // Fallback to the sample bundled with the client so stats still
+                // display even if the cache file hasn't been provided yet.
+                is = ItemStats.class.getResourceAsStream("/item_stats.json");
+                if (is == null) {
+                    System.out.println("ItemStats: bundled stats resource missing");
+                    return;
                 }
             }
-            fileReader.close();
+
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(is);
+
+            readType = 1;
+
+            if (root.isArray()) {
+                List<ItemStats> list = mapper.convertValue(root,
+                        new TypeReference<List<ItemStats>>() {});
+                for (ItemStats stats : list) {
+                    int id = stats.itemId;
+                    if (id < 0 || id >= itemstats.length) {
+                        continue;
+                    }
+                    itemstats[id] = stats;
+                    count++;
+                }
+            } else if (root.isObject()) {
+                for (Iterator<Map.Entry<String, JsonNode>> it = root.fields(); it.hasNext();) {
+                    Map.Entry<String, JsonNode> entry = it.next();
+                    int id;
+                    try {
+                        id = Integer.parseInt(entry.getKey());
+                    } catch (NumberFormatException ex) {
+                        continue;
+                    }
+                    if (id < 0 || id >= itemstats.length) {
+                        continue;
+                    }
+                    JsonNode eq = entry.getValue().get("equipment");
+                    if (eq == null) {
+                        continue;
+                    }
+                    ItemStats stats = new ItemStats();
+                    stats.itemId = id;
+                    stats.attackBonus = new int[] {
+                            eq.path("astab").asInt(),
+                            eq.path("aslash").asInt(),
+                            eq.path("acrush").asInt(),
+                            eq.path("amagic").asInt(),
+                            eq.path("arange").asInt() };
+                    stats.defenceBonus = new int[] {
+                            eq.path("dstab").asInt(),
+                            eq.path("dslash").asInt(),
+                            eq.path("dcrush").asInt(),
+                            eq.path("dmagic").asInt(),
+                            eq.path("drange").asInt() };
+                    stats.strengthBonus = eq.path("str").asInt();
+                    stats.rangeBonus = eq.path("rstr").asInt();
+                    stats.magicBonus = eq.path("mdmg").asInt();
+                    stats.prayerBonus = eq.path("prayer").asInt();
+                    itemstats[id] = stats;
+                    count++;
+                }
+            }
+
+            System.out.println("ItemStats: loaded " + count + " entries " +
+                    (fromCache ? "from cache" : "from bundled resource"));
         } catch (IOException e) {
+            System.err.println("ItemStats: error reading stats - " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
         }
     }
 }

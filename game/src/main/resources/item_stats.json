@@ -1,0 +1,23 @@
+{
+  "30170": {
+    "name": "MiniGun",
+    "equipable": true,
+    "weight": 5.4,
+    "equipment": {
+      "slot": 3,
+      "astab": 0,
+      "aslash": 0,
+      "acrush": 0,
+      "amagic": 0,
+      "arange": 0,
+      "dstab": 0,
+      "dslash": 0,
+      "dcrush": 0,
+      "dmagic": 0,
+      "drange": 0,
+      "prayer": 0,
+      "str": 0,
+      "aspeed": 1
+    }
+  }
+}

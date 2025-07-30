@@ -23,7 +23,12 @@ public class SettingsManager {
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(SettingsManager.class.getName());
 
 	public static final int DEFAULT_FOG_COLOR = 0;
-	public static final int DEFAULT_START_MENU_COLOR = 0;
+    /**
+     * Default color used for the inventory hover menu when the client first
+     * starts with no saved settings. Magenta matches the first enabled option
+     * in the settings dropdown.
+     */
+    public static final int DEFAULT_START_MENU_COLOR = 0xFF00FF;
 	public static final int DEFAULT_CHAT_COLOR_OPTION = 0;
 
 	public static void saveSettings(Client client) throws IOException {
