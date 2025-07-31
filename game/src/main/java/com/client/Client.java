@@ -51,3 +51,24 @@ import com.client.draw.HoverManager;
             } else {
                 HoverManager.reset();
                 hintMenu = false;
+        ItemStats stats = ItemStats.forId(itemId);
+        if (stats == null) {
+            if (Configuration.developerMode && ItemStats.missingLogged.add(itemId)) {
+                System.out.println("ItemStats: missing stats for id " + itemId);
+            }
+        short stabAtk = (short) stats.attackBonus[0];
+        int slashAtk = stats.attackBonus[1];
+        int crushAtk = stats.attackBonus[2];
+        int magicAtk = stats.attackBonus[3];
+        int rangedAtk = stats.attackBonus[4];
+
+        int stabDef = stats.defenceBonus[0];
+        int slashDef = stats.defenceBonus[1];
+        int crushDef = stats.defenceBonus[2];
+        int magicDef = stats.defenceBonus[3];
+        int rangedDef = stats.defenceBonus[4];
+
+        int mageBonus = stats.magicBonus;
+        int rangeBonus = stats.rangeBonus;
+        int prayerBonus = stats.prayerBonus;
+        int strengthBonus = stats.strengthBonus;

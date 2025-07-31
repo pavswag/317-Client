@@ -195,12 +195,12 @@ public class HoverManager {
             return;
         }
 
-        ItemStats stats = null;
-        if (hintId >= 0 && hintId < ItemStats.itemstats.length) {
-            stats = ItemStats.itemstats[hintId];
-        }
+        ItemStats stats = ItemStats.forId(hintId);
         if (stats == null) {
-            System.out.println("ItemStats: missing stats for id " + hintId);
+            if (Configuration.developerMode &&
+                    ItemStats.missingLogged.add(hintId)) {
+                System.out.println("ItemStats: missing stats for id " + hintId);
+            }
             HoverManager.reset();
             return;
         }

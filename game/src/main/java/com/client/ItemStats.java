@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,6 +37,11 @@ public class ItemStats {
      * do not cause {@link ArrayIndexOutOfBoundsException} when looked up.
      */
     public static ItemStats[] itemstats = new ItemStats[0];
+
+    /**
+     * Track ids that were missing so we only log once.
+     */
+    public static final java.util.Set<Integer> missingLogged = new java.util.HashSet<>();
 
     public int itemId;
     public int[] attackBonus;
@@ -64,6 +71,19 @@ public class ItemStats {
      * No-argument constructor for JSON deserialization.
      */
     public ItemStats() {
+    }
+
+    /**
+     * Safely fetch stats for the given item id.
+     *
+     * @param id item identifier
+     * @return stats or {@code null} if none exist
+     */
+    public static ItemStats forId(int id) {
+        if (id < 0 || id >= itemstats.length) {
+            return null;
+        }
+        return itemstats[id];
     }
 
     private static int readType = 0;
@@ -162,8 +182,13 @@ public class ItemStats {
                 }
             }
 
-            System.out.println("ItemStats: loaded " + count + " entries " +
-                    (fromCache ? "from cache" : "from bundled resource"));
+            if (fromCache) {
+                System.out.println("ItemStats: loaded " + count +
+                        " entries from " + file.getAbsolutePath());
+            } else {
+                System.out.println("ItemStats: loaded " + count +
+                        " entries from bundled resource");
+            }
         } catch (IOException e) {
             System.err.println("ItemStats: error reading stats - " + e.getMessage());
             e.printStackTrace();
