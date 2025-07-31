@@ -14,11 +14,13 @@ Custom hover text works for any item ID defined in `HoverManager`, even if the
 item isn't equippable (e.g. consumables or loot boxes).
 
 ## Item stats
-Item bonuses shown in the Ctrl tooltip are read from `item_stats.json` in the cache
-directory. If that file isn’t found the client falls back to the bundled
-`item_stats.json` so the stats menu still appears. The JSON should match the
-server format where each key is an item id and the `equipment` block holds the
-bonus values (for example `astab`, `aslash`, `dstab`, `drange`, etc.). Only these
-numbers are used by the client when displaying the stats.
-The loader logs how many entries were loaded and whether the data came from the
-cache or the bundled sample to make troubleshooting easier.
+Item bonuses shown in the Ctrl tooltip are read from `item_stats.json` in the
+cache directory. If the file does not exist the client falls back to the
+bundled example so the stats menu still appears. The JSON should follow the
+server format where each item id has an `equipment` block containing values
+such as `astab`, `aslash`, `arange`, `dstab`, `drange`, `str`, and the other
+bonus fields. Only these numbers are used when drawing the stats.
+
+On startup the loader prints how many entries were loaded and whether they came
+from the cache or the bundled sample. The array is resized automatically to fit
+all ids found so custom items work without crashes.

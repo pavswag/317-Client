@@ -30,14 +30,11 @@ public class ItemStats {
     public static final int RANGED = 4;
 
     /**
-     * Array of item stats indexed by item id. Some servers use custom
-     * item ids above the {@code totalItems} count from the cache. The
-     * item definition loader allocates extra space for these ids, so do
-     * the same here to avoid {@link ArrayIndexOutOfBoundsException} when
-     * looking up stats for custom items.
+     * Array of item stats indexed by item id. It is resized once the
+     * definitions are read so that custom item ids above the cache count
+     * do not cause {@link ArrayIndexOutOfBoundsException} when looked up.
      */
-    public static ItemStats[] itemstats = new ItemStats[
-            ItemDefinition.totalItems > 0 ? ItemDefinition.totalItems + 20_000 : 35_000];
+    public static ItemStats[] itemstats = new ItemStats[0];
 
     public int itemId;
     public int[] attackBonus;
@@ -93,6 +90,25 @@ public class ItemStats {
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(is);
+
+            int capacity = ItemDefinition.totalItems + 20_000;
+            int maxId = 0;
+
+            if (root.isObject()) {
+                for (Iterator<String> it = root.fieldNames(); it.hasNext();) {
+                    try {
+                        maxId = Math.max(maxId, Integer.parseInt(it.next()));
+                    } catch (NumberFormatException ignored) {
+                    }
+                }
+            } else if (root.isArray()) {
+                for (JsonNode n : root) {
+                    maxId = Math.max(maxId, n.path("itemId").asInt());
+                }
+            }
+
+            int size = Math.max(capacity, maxId + 1);
+            itemstats = new ItemStats[size];
 
             readType = 1;
 
