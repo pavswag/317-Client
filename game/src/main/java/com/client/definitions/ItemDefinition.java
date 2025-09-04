@@ -13,6 +13,60 @@ import java.util.HashMap;
 
 public final class ItemDefinition implements RSItemComposition {
 
+    private static final String[] ACTIONS_WEAR = { null, "Wear", null, null, "Drop" };
+    private static final String[] ACTIONS_EAT  = { "Eat", null, null, null, "Drop" };
+    private static final String[] GROUND_PICK  = { null, null, "Take", null, null };
+
+    private static void setEquip1Both(ItemDefinition d, int id) { d.maleModel0 = id; d.femaleModel0 = id; }
+    private static void setEquip2Both(ItemDefinition d, int id) { d.maleModel1 = id; d.femaleModel1 = id; }
+    private static void setEquip3Both(ItemDefinition d, int id) { d.maleModel2 = id; d.femaleModel2 = id; }
+    private static void setHeadBoth(ItemDefinition d, int id) { d.maleHeadModel = id; d.femaleHeadModel = id; }
+    private static void setDialogBoth(ItemDefinition d, int id) { d.maleHeadModel2 = id; d.femaleHeadModel2 = id; }
+
+    private static void copyFrom(ItemDefinition d, int srcId) {
+        ItemDefinition s = lookup(srcId);
+        if (s == null) {
+            return;
+        }
+        d.modelId = s.modelId;
+        d.maleModel0 = s.maleModel0;
+        d.maleModel1 = s.maleModel1;
+        d.maleModel2 = s.maleModel2;
+        d.femaleModel0 = s.femaleModel0;
+        d.femaleModel1 = s.femaleModel1;
+        d.femaleModel2 = s.femaleModel2;
+        d.maleHeadModel = s.maleHeadModel;
+        d.maleHeadModel2 = s.maleHeadModel2;
+        d.femaleHeadModel = s.femaleHeadModel;
+        d.femaleHeadModel2 = s.femaleHeadModel2;
+        d.zoom2d = s.zoom2d;
+        d.xan2d = s.xan2d;
+        d.yan2d = s.yan2d;
+        d.zan2d = s.zan2d;
+        d.xOffset2d = s.xOffset2d;
+        d.yOffset2d = s.yOffset2d;
+        d.stackable = s.stackable;
+        d.cost = s.cost;
+        d.members = s.members;
+        d.options = s.options;
+        d.interfaceOptions = s.interfaceOptions;
+        d.equipActions = s.equipActions;
+        d.colorFind = s.colorFind;
+        d.colorReplace = s.colorReplace;
+        d.team = s.team;
+        d.tradeable = s.tradeable;
+        d.params = s.params;
+        d.glowColor = s.glowColor;
+        d.weight = s.weight;
+        d.wearPos1 = s.wearPos1;
+        d.wearPos2 = s.wearPos2;
+        d.wearPos3 = s.wearPos3;
+    }
+
+    private static String safe(String s) {
+        return s == null ? "" : s;
+    }
+
     public static ReferenceCache sprites = new ReferenceCache(100);
     public static ReferenceCache models = new ReferenceCache(50);
     public static boolean isMembers = true;
@@ -1253,8 +1307,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30170; //
                 itemDef.modelId = 61000; //
-                itemDef.maleModel0 = 61000; //
-                itemDef.femaleModel0 = 61000; //
+                setEquip1Both(itemDef, 61000); //
                 itemDef.name = "MiniGun";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1268,8 +1321,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30172; //
                 itemDef.modelId = 61002; //
-                itemDef.maleModel0 = 61002; //
-                itemDef.femaleModel0 = 61002; //
+                setEquip1Both(itemDef, 61002); //
                 itemDef.name = "Darkness Platebody (G)";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1283,8 +1335,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30174; //
                 itemDef.modelId = 61004; //
-                itemDef.maleModel0 = 61004; //
-                itemDef.femaleModel0 = 61004; //
+                setEquip1Both(itemDef, 61004); //
                 itemDef.name = "Darkness Helmet (G)";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1298,8 +1349,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30176; //
                 itemDef.modelId = 61006; //
-                itemDef.maleModel0 = 61006; //
-                itemDef.femaleModel0 = 61006; //
+                setEquip1Both(itemDef, 61006); //
                 itemDef.name = "Darkness Platelegs (G)";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1313,8 +1363,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30180; //
                 itemDef.modelId = 61008; //
-                itemDef.maleModel0 = 61008; //
-                itemDef.femaleModel0 = 61008; //
+                setEquip1Both(itemDef, 61008); //
                 itemDef.name = "Cursed Platelegs";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1328,8 +1377,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30182; //
                 itemDef.modelId = 61010; //
-                itemDef.maleModel0 = 61010; //
-                itemDef.femaleModel0 = 61010; //
+                setEquip1Both(itemDef, 61010); //
                 itemDef.name = "Cursed Platebody";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1343,8 +1391,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30184; //
                 itemDef.modelId = 61012; //
-                itemDef.maleModel0 = 61012; //
-                itemDef.femaleModel0 = 61012; //
+                setEquip1Both(itemDef, 61012); //
                 itemDef.name = "Cursed Helmet";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1358,8 +1405,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30186; //
                 itemDef.modelId = 61014; //
-                itemDef.maleModel0 = 61014; //
-                itemDef.femaleModel0 = 61014; //
+                setEquip1Both(itemDef, 61014); //
                 itemDef.name = "Cursed WingedCape";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1373,8 +1419,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30188; //
                 itemDef.modelId = 27221; //
-                itemDef.maleModel0 = 27221; //
-                itemDef.femaleModel0 = 27221; //
+                setEquip1Both(itemDef, 27221); //
                 itemDef.name = "Shiny Royal Crown";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1388,8 +1433,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30190; //
                 itemDef.modelId = 53178; //
-                itemDef.maleModel0 = 53178; //
-                itemDef.femaleModel0 = 53178; //
+                setEquip1Both(itemDef, 53178); //
                 itemDef.name = "Crystal Hat";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1403,8 +1447,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30192; //
                 itemDef.modelId = 53180; //
-                itemDef.maleModel0 = 53180; //
-                itemDef.femaleModel0 = 53180; //
+                setEquip1Both(itemDef, 53180); //
                 itemDef.name = "Crystal Robetop";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1418,8 +1461,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30194; //
                 itemDef.modelId = 53182; //
-                itemDef.maleModel0 = 53182; //
-                itemDef.femaleModel0 = 53182; //
+                setEquip1Both(itemDef, 53182); //
                 itemDef.name = "Crystal Robebottoms";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1433,8 +1475,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30196; //
                 itemDef.modelId = 53205; //
-                itemDef.maleModel0 = 53205; //
-                itemDef.femaleModel0 = 53205; //
+                setEquip1Both(itemDef, 53205); //
                 itemDef.name = "Crystal Boots";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1448,8 +1489,7 @@ public final class ItemDefinition implements RSItemComposition {
                 itemDef.setDefaults();
                 itemDef.id = 30198; //
                 itemDef.modelId = 61016; //
-                itemDef.maleModel0 = 61016; //
-                itemDef.femaleModel0 = 61016; //
+                setEquip1Both(itemDef, 61016); //
                 itemDef.name = "The Great Battleaxe";
                 itemDef.interfaceOptions = new String[] { null, "Wield", null, null, "Drop" };
                 itemDef.zoom2d = 1765;
@@ -1461,10 +1501,9 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33430:
                 itemDef.name = "Wraith Sword";
-                itemDef.maleModel0 = 60957;
+                setEquip1Both(itemDef, 60957);
                 itemDef.modelId = 33430; //
                 itemDef.modelId = 60957; //
-                itemDef.femaleModel0 = 60957;
                 itemDef.zoom2d = ItemDefinition.lookup(33202).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(33202).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(33202).yan2d;
@@ -1474,8 +1513,7 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33431:
                 itemDef.name = "Wraith Scythe";
-                itemDef.maleModel0 = 60964;
-                itemDef.femaleModel0 = 60964;
+                setEquip1Both(itemDef, 60964);
                 itemDef.modelId = 60958;
                 itemDef.zoom2d = ItemDefinition.lookup(33203).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(33203).xan2d;
@@ -1486,8 +1524,7 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33432:
                 itemDef.name = "Wraith Spear";
-                itemDef.maleModel0 = 60960;
-                itemDef.femaleModel0 = 60960;
+                setEquip1Both(itemDef, 60960);
                 itemDef.modelId = 60959;
                 itemDef.zoom2d = ItemDefinition.lookup(33204).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(33204).xan2d;
@@ -1498,39 +1535,36 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33438:
                 itemDef.name = "Wraith Mask";
-                itemDef.maleModel0 = 60975;
-                itemDef.femaleModel0 = 60975;
+                setEquip1Both(itemDef, 60975);
                 itemDef.modelId = 60974;
                 itemDef.zoom2d = ItemDefinition.lookup(27235).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(27235).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(27235).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(27235).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(27235).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33439:
                 itemDef.name = "Wraith Body";
-                itemDef.maleModel0 = 60977;
-                itemDef.femaleModel0 = 60977;
+                setEquip1Both(itemDef, 60977);
                 itemDef.modelId = 60976;
                 itemDef.zoom2d = ItemDefinition.lookup(27238).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(27238).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(27238).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(27238).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(27238).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33440:
                 itemDef.name = "Wraith legs";
-                itemDef.maleModel0 = 60979;
-                itemDef.femaleModel0 = 60979;
+                setEquip1Both(itemDef, 60979);
                 itemDef.modelId = 60978;
                 itemDef.zoom2d = ItemDefinition.lookup(27241).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(27241).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(27241).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(27241).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(27241).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33442:
                 itemDef.name = "100% Thrills";
@@ -1547,8 +1581,7 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33443:
                 itemDef.name = "Wraith Shield";
-                itemDef.maleModel0 = 60983;
-                itemDef.femaleModel0 = 60983;
+                setEquip1Both(itemDef, 60983);
                 itemDef.modelId = 60982;
                 itemDef.zoom2d = ItemDefinition.lookup(12817).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(12817).xan2d;
@@ -1560,8 +1593,7 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33444:
                 itemDef.name = "Wraith Book";
-                itemDef.maleModel0 = 60985;
-                itemDef.femaleModel0 = 60985;
+                setEquip1Both(itemDef, 60985);
                 itemDef.modelId = 60984;
                 itemDef.zoom2d = ItemDefinition.lookup(26551).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(26551).xan2d;
@@ -1573,8 +1605,7 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33445:
                 itemDef.name = "Wraith Defender";
-                itemDef.maleModel0 = 60987;
-                itemDef.femaleModel0 = 60987;
+                setEquip1Both(itemDef, 60987);
                 itemDef.modelId = 60986;
                 itemDef.zoom2d = ItemDefinition.lookup(27552).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(27552).xan2d;
@@ -1587,40 +1618,36 @@ public final class ItemDefinition implements RSItemComposition {
             case 33397:
                 itemDef.name = "@pur@Pink Ankou Mask";
                 itemDef.modelId = 60905;
-                itemDef.maleModel0 = 60900;
-                itemDef.femaleModel0 = 60900;
+                setEquip1Both(itemDef, 60900);
                 itemDef.zoom2d = ItemDefinition.lookup(20095).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(20095).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(20095).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(20095).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(20095).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33398:
                 itemDef.name = "@pur@Pink Ankou Top";
                 itemDef.modelId = 60906;
-                itemDef.maleModel0 = 60901;
-                itemDef.maleModel1 = 60910;
-                itemDef.femaleModel0 = 60901;
-                itemDef.femaleModel1 = 60910;
+                setEquip1Both(itemDef, 60901);
+                setEquip2Both(itemDef, 60910);
                 itemDef.zoom2d = ItemDefinition.lookup(20098).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(20098).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(20098).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(20098).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(20098).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33399:
                 itemDef.name = "@pur@Pink Ankou Legs";
                 itemDef.modelId = 60907;
-                itemDef.maleModel0 = 60902;
-                itemDef.femaleModel0 = 60902;
+                setEquip1Both(itemDef, 60902);
                 itemDef.zoom2d = ItemDefinition.lookup(20104).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(20104).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(20104).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(20104).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(20104).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
 
             case 11505:
@@ -1629,14 +1656,13 @@ public final class ItemDefinition implements RSItemComposition {
             case 33392:
                 itemDef.name = "Freedom Ring";
                 itemDef.modelId = 60891;
-                itemDef.maleModel0 = 60891;
-                itemDef.femaleModel0 = 60891;
+                setEquip1Both(itemDef, 60891);
                 itemDef.zoom2d = ItemDefinition.lookup(28327).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(28327).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(28327).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(28327).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(28327).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 24725:
                 itemDef.name = "Hallowed Amulet";
@@ -1680,64 +1706,59 @@ public final class ItemDefinition implements RSItemComposition {
             case 33400:
                 itemDef.name = "@pur@Pink Ankou Socks";
                 itemDef.modelId = 60908;
-                itemDef.maleModel0 = 60903;
-                itemDef.femaleModel0 = 60903;
+                setEquip1Both(itemDef, 60903);
                 itemDef.zoom2d = ItemDefinition.lookup(20107).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(20107).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(20107).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(20107).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(20107).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33401:
                 itemDef.name = "@pur@Pink Ankou Mask";
                 itemDef.modelId = 60909;
-                itemDef.maleModel0 = 60904;
-                itemDef.femaleModel0 = 60904;
+                setEquip1Both(itemDef, 60904);
                 itemDef.zoom2d = ItemDefinition.lookup(20101).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(20101).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(20101).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(20101).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(20101).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33402:
                 itemDef.setDefaults();
                 itemDef.name = "Hallowed Gloves";
                 itemDef.modelId = 60913;
-                itemDef.maleModel0 = 60911;
-                itemDef.femaleModel0 = 60911;
+                setEquip1Both(itemDef, 60911);
                 itemDef.zoom2d = ItemDefinition.lookup(22981).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(22981).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(22981).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(22981).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(22981).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33403:
                 itemDef.name = "Hallowed Boots";
                 itemDef.modelId = 60912;
-                itemDef.maleModel0 = 60912;
-                itemDef.femaleModel0 = 60912;
+                setEquip1Both(itemDef, 60912);
                 itemDef.zoom2d = ItemDefinition.lookup(13235).zoom2d;
                 itemDef.xan2d = ItemDefinition.lookup(13235).xan2d;
                 itemDef.yan2d = ItemDefinition.lookup(13235).yan2d;
                 itemDef.xOffset2d = ItemDefinition.lookup(13235).xOffset2d;
                 itemDef.yOffset2d = ItemDefinition.lookup(13235).yOffset2d;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33404:
                 itemDef.name = "Send Nudes";
                 itemDef.modelId = 60915;
-                itemDef.maleModel0 = 60914;
-                itemDef.femaleModel0 = 60914;
+                setEquip1Both(itemDef, 60914);
                 itemDef.zoom2d = 4180;
                 itemDef.xan2d = 235;
                 itemDef.yan2d = 43;
                 itemDef.zan2d = 0;
                 itemDef.xOffset2d = 1;
                 itemDef.yOffset2d = -71;
-                itemDef.interfaceOptions = new String[] { null, "Wear", null, null, "Drop" };
+                itemDef.interfaceOptions = ACTIONS_WEAR;
                 break;
             case 33446:
                 itemDef.name = "ale of the scotty";
@@ -1754,15 +1775,8 @@ public final class ItemDefinition implements RSItemComposition {
                 break;
             case 33447:
                 itemDef.name = "Xamphur's Lure";
-                itemDef.maleModel0 = ItemDefinition.lookup(9627).maleModel0;
-                itemDef.femaleModel0 = ItemDefinition.lookup(9627).femaleModel0;
+                copyFrom(itemDef, 9627);
                 itemDef.modelId = ItemDefinition.lookup(9627).id;
-                itemDef.zoom2d = ItemDefinition.lookup(9627).zoom2d;
-                itemDef.xan2d = ItemDefinition.lookup(9627).xan2d;
-                itemDef.yan2d = ItemDefinition.lookup(9627).yan2d;
-                itemDef.zan2d = ItemDefinition.lookup(9627).zan2d;
-                itemDef.xOffset2d = ItemDefinition.lookup(9627).xOffset2d;
-                itemDef.yOffset2d = ItemDefinition.lookup(9627).yOffset2d;
                 itemDef.interfaceOptions = new String[] { null, null, null, null, "Drop" };
                 break;
             case 26879:
@@ -7164,7 +7178,7 @@ public final class ItemDefinition implements RSItemComposition {
 
     @Override
     public String getName() {
-        return name;
+        return safe(name);
     }
 
     @Override
